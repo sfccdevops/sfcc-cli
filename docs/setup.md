@@ -24,7 +24,7 @@ otherwise:
 #### Pass Params via CLI
 
 ```bash
-sfcc setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d -u my@email.com -p "my^pass"
+sfcc setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d /Users/RVW/Projects/mysandbox -u my@email.com -p "my^pass"
 ```
 
 **FLAGS:**
