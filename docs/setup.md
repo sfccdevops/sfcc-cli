@@ -9,14 +9,22 @@ Setup
 
 #### Enter Params via Prompt
 
+If installed globally, you can run:
+
 ```bash
-node ./bin/cli.js setup
+sfcc setup
+```
+
+otherwise:
+
+```bash
+./bin/cli.js setup
 ```
 
 #### Pass Params via CLI
 
 ```bash
-node ./bin/cli.js setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d -u my@email.com -p "my^pass"
+sfcc setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d -u my@email.com -p "my^pass"
 ```
 
 **FLAGS:**
