@@ -1,36 +1,31 @@
 const chalk = require('chalk');
-const fs = require('fs');
-const homedir = require('os').homedir();
-const path = require('path');
+
+const config = require('../lib/config')();
 
 module.exports = async () => {
-  const configFile = path.join(homedir, '.sfcc-cli');
+  const currentConfig = config.get();
 
-  let config = {};
+  if (
+    Object.keys(currentConfig).length > 0 &&
+    currentConfig.constructor === Object
+  ) {
+    console.log(chalk.green('\nSFCC CLIENTS:\n'));
 
-  if (fs.existsSync(configFile)) {
-    const currentConfig = fs.readFileSync(configFile, 'utf8');
-    if (currentConfig) {
-      config = Object.assign({}, config, JSON.parse(currentConfig));
+    for (let client in currentConfig) {
+      console.log(chalk.green('client: ' + client));
 
-      console.log(chalk.green('\nSFCC CLIENTS:\n'));
-
-      for (let client in config) {
-        console.log(chalk.green('client: ' + client));
-
-        for (let instance in config[client]) {
-          console.log('  ' + chalk.cyan('instance: ' + instance));
-          console.log('    hostname: ' + config[client][instance].h);
-          console.log('    directory: ' + config[client][instance].d);
-          console.log('    username: ' + config[client][instance].u);
-          console.log(
-            '    password: ' + config[client][instance].p.replace(/./g, '*')
-          );
-          console.log('    api_version: ' + config[client][instance].v);
-        }
-
-        console.log('');
+      for (let instance in currentConfig[client]) {
+        console.log('  ' + chalk.cyan('instance: ' + instance));
+        console.log('    hostname: ' + currentConfig[client][instance].h);
+        console.log('    directory: ' + currentConfig[client][instance].d);
+        console.log('    username: ' + currentConfig[client][instance].u);
+        console.log(
+          '    password: ' +
+            currentConfig[client][instance].p.replace(/./g, '*')
+        );
       }
+
+      console.log('');
     }
   } else {
     console.log(chalk.red('\n× No Clients'));

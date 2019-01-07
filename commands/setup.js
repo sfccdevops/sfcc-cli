@@ -1,18 +1,14 @@
 const argv = require('minimist')(process.argv.slice(2));
 const chalk = require('chalk');
 const fs = require('fs');
-const homedir = require('os').homedir();
-const path = require('path');
 const prompt = require('prompt');
 const slug = require('slug');
+
+const config = require('../lib/config')();
 
 module.exports = async () => {
   if (argv && typeof argv.a === 'undefined') {
     argv.a = 'sandbox';
-  }
-
-  if (argv && typeof argv.v === 'undefined') {
-    argv.v = 'v16_6';
   }
 
   prompt.message = '';
@@ -65,14 +61,6 @@ module.exports = async () => {
         default: 'sandbox'
       },
       {
-        description: chalk.cyan('API Version:'),
-        name: 'v',
-        pattern: /^v[0-9_]+$/,
-        message: 'Invalid API Version. ( e.g. v16_6 )',
-        required: true,
-        default: 'v16_6'
-      },
-      {
         description: chalk.cyan('Directory:'),
         name: 'd',
         required: true,
@@ -108,42 +96,35 @@ module.exports = async () => {
       } else {
         const client = slug(result.c, {lower: true, replacement: '-'});
         const alias = slug(result.a, {lower: true, replacement: '-'});
-        const configFile = path.join(homedir, '.sfcc-cli');
+        const currentConfig = config.get();
 
-        let config = {};
+        let newConfig = {};
         let isUpdate = false;
 
         // Get current config if it is already there
-        if (fs.existsSync(configFile)) {
-          const currentConfig = fs.readFileSync(configFile, 'utf8');
-          if (currentConfig) {
-            config = Object.assign({}, config, JSON.parse(currentConfig));
-            isUpdate = true;
-          }
+        if (
+          Object.keys(currentConfig).length > 0 &&
+          currentConfig.constructor === Object
+        ) {
+          newConfig = Object.assign({}, newConfig, currentConfig);
+          isUpdate = true;
         }
 
         // Check if this is a new client
-        if (typeof config[client] === 'undefined') {
-          config[client] = {};
+        if (typeof newConfig[client] === 'undefined') {
+          newConfig[client] = {};
         }
 
         // Create / Overwrite SFCC Instance for Client
-        config[client][alias] = {
+        newConfig[client][alias] = {
           h: result.h,
-          v: result.v,
           d: result.d,
           u: result.u,
           p: result.p
         };
 
         // Write Config File
-        fs.writeFileSync(configFile, JSON.stringify(config), 'utf8');
-
-        if (isUpdate) {
-          console.log(chalk.green(`\n【ツ】Updated: ${configFile} \n`));
-        } else {
-          console.log(chalk.green(`\n【ツ】Created: ${configFile} \n`));
-        }
+        config.set(newConfig, isUpdate);
       }
     }
   );

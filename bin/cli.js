@@ -32,11 +32,6 @@ const argv = yargs
       alias: 'a',
       describe: 'Instance Alias',
       default: 'sandbox'
-    },
-    'api-version': {
-      alias: 'v',
-      describe: 'API Version',
-      default: 'v16_6'
     }
   })
   .command('list', 'List Configured SFCC Clients')
