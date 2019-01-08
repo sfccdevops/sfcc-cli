@@ -16,6 +16,10 @@ const argv = yargs
       alias: 'h',
       describe: 'Hostname for Instance'
     },
+    version: {
+      alias: 'v',
+      describe: 'Code Version'
+    },
     directory: {
       alias: 'd',
       describe: 'Absolute path to Repository'

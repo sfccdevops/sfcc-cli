@@ -7,8 +7,20 @@ const slug = require('slug')
 const config = require('../lib/config')()
 
 module.exports = async () => {
-  if (argv && typeof argv.a === 'undefined') {
+  const setDefaults =
+    argv &&
+    typeof argv.c !== 'undefined' &&
+    argv.h !== 'undefined' &&
+    argv.d !== 'undefined' &&
+    argv.u !== 'undefined' &&
+    argv.p !== 'undefined'
+
+  if (setDefaults && typeof argv.a === 'undefined') {
     argv.a = 'sandbox'
+  }
+
+  if (setDefaults && typeof argv.v === 'undefined') {
+    argv.v = 'develop'
   }
 
   prompt.message = ''
@@ -49,6 +61,14 @@ module.exports = async () => {
 
           return isValid
         }
+      },
+      {
+        description: chalk.cyan('Code Version:'),
+        name: 'v',
+        pattern: /^[a-z0-9]+$/,
+        message: 'Code Version. ( e.g. develop, sitegenesis, etc )',
+        required: true,
+        default: 'develop'
       },
       {
         description: chalk.cyan('Instance Alias:'),
@@ -112,6 +132,8 @@ module.exports = async () => {
         // Create / Overwrite SFCC Instance for Client
         newConfig[client][alias] = {
           h: result.h,
+          v: result.v,
+          a: result.a,
           d: result.d,
           u: result.u,
           p: result.p

@@ -14,6 +14,7 @@ module.exports = async () => {
         console.log(chalk.cyan('instance: ') + chalk.cyan.bold(instance))
         console.log('    path: ' + chalk.bold(currentConfig[client][instance].d))
         console.log('    host: ' + chalk.bold(currentConfig[client][instance].h))
+        console.log('    code: ' + chalk.bold(currentConfig[client][instance].v))
         console.log('    user: ' + chalk.bold(currentConfig[client][instance].u))
         console.log('    pass: ' + chalk.bold(currentConfig[client][instance].p.replace(/./g, '*')))
       }

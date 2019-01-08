@@ -37,6 +37,7 @@ Directory      | `-d`  | Yes      |           | Absolute path to the projects SF
 Username       | `-u`  | Yes      |           | Instances SFCC Business Manager Username
 Password       | `-p`  | Yes      |           | Instances SFCC Business Manager Password
 Instance Alias | `-a`  | No       | `sandbox` | Custom Name to give this Instance
+Code Version   | `-v`  | No       | `develop` | SFCC Code Version to use
 
 **SAVED TO: ~/.sfcc-cli**
 
@@ -47,7 +48,9 @@ Instance Alias | `-a`  | No       | `sandbox` | Custom Name to give this Instanc
       "h": "dev04-web-mysandbox.demandware.net",
       "d": "/Users/RVW/Projects/mysandbox",
       "u": "my@email.com",
-      "p": "my^pass"
+      "p": "my^pass",
+      "a": "sandbox",
+      "v": "develop"
     }
   }
 }
