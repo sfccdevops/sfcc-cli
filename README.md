@@ -25,6 +25,7 @@ Developer Overview
 
 #### Additional Information
 
+* [IDE Setup](docs/ide-setup.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
 _Inspired by [dw-cli](https://github.com/mzwallace/dw-cli). Custom Built for RVW Employees._

@@ -16,14 +16,16 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'prettier'
+    'prettier/standard'
   ],
   rules: {
     'prettier/prettier': [
       'error',
       {
         'singleQuote': true,
-        'bracketSpacing': false
+        'bracketSpacing': false,
+        'semi': false,
+        'printWidth': 120
       }
     ],
     'no-empty': [

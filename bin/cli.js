@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const debug = require('debug')('cli');
-const path = require('path');
-const yargs = require('yargs');
-const chalk = require('chalk');
+const debug = require('debug')('cli')
+const path = require('path')
+const yargs = require('yargs')
+const chalk = require('chalk')
 
 const argv = yargs
   .usage('Usage: $0 <command> <client> <instance> --switches')
@@ -36,7 +36,7 @@ const argv = yargs
   })
   .command('list', 'List Configured SFCC Clients')
   .command('delete <client> [instance]', 'Delete Config for Client')
-  .command('watch <client> <instance>', 'Watch for Changes and Push Updates', {
+  .command('watch [client] [instance]', 'Watch for Changes and Push Updates', {
     spinner: {
       describe: 'Show the watch spinner',
       default: true
@@ -46,18 +46,18 @@ const argv = yargs
   .example('$0 watch my-client sandbox', 'Watch for my-client sandbox changes')
   .demand(1)
   .help()
-  .version().argv;
+  .version().argv
 
-const command = argv._[0];
+const command = argv._[0]
 
 try {
-  debug(`Executing ${command}`);
-  require(path.join(__dirname, `../commands/${command}.js`))();
+  debug(`Executing ${command}`)
+  require(path.join(__dirname, `../commands/${command}.js`))()
 } catch (err) {
   if (err.code === 'MODULE_NOT_FOUND') {
-    console.log(chalk.red(`\nCommand '${command}' not valid.\n`));
-    console.log(`Use '${argv.$0} help' for a list of commands.\n`);
+    console.log(chalk.red.bold(`\n✖ Command 'sfcc ${command}' not recognized\n`))
+    console.log('Use ' + chalk.cyan('sfcc help') + ' for a list of commands\n')
   } else {
-    throw err;
+    throw err
   }
 }
