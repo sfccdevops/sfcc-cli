@@ -37,7 +37,6 @@ Directory      | `-d`  | Yes      |           | Absolute path to the projects SF
 Username       | `-u`  | Yes      |           | Instances SFCC Business Manager Username
 Password       | `-p`  | Yes      |           | Instances SFCC Business Manager Password
 Instance Alias | `-a`  | No       | `sandbox` | Custom Name to give this Instance
-API Version    | `-v`  | No       | `v16_6`   | SFCC API Version used on Instance
 
 **SAVED TO: ~/.sfcc-cli**
 
@@ -46,7 +45,6 @@ API Version    | `-v`  | No       | `v16_6`   | SFCC API Version used on Instanc
   "my-client": {
     "sandbox": {
       "h": "dev04-web-mysandbox.demandware.net",
-      "v": "v16_6",
       "d": "/Users/RVW/Projects/mysandbox",
       "u": "my@email.com",
       "p": "my^pass"
