@@ -7,6 +7,8 @@
 
 > Get your SFCC Repo added to the SFCC CLI Config
 
+![demo](https://sfcc-cli.s3.amazonaws.com/setup.gif)
+
 #### Enter Params via Prompt
 
 If installed globally, you can run:
