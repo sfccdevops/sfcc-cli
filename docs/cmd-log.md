@@ -13,7 +13,7 @@ If you only have a single project, you can run:
 sfcc log
 ```
 
-If needed to setup multiple clients, or multiple instances for the same client, you will need to specify what to watch:
+If needed to setup multiple clients, or multiple instances for the same client, you will need to specify what to use:
 
 ```bash
 sfcc log <client> <instance>
@@ -38,7 +38,7 @@ Latest   | `--latest` | `false` | Show Latest Logs Only ( default is to use ALL 
 Get current list of log types:
 
 ```bash
-sfcc log list
+sfcc log --list
 ```
 
 Watch latest `customerror` logs that contain the text `PipelineCallServlet`:
