@@ -13,5 +13,8 @@ IDE Setup
 
 #### Sublime Text
 
+[Coming Soon]
 
 #### VSs Code
+
+[Coming Soon]

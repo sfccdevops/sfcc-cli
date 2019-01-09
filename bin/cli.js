@@ -47,7 +47,7 @@ const argv = yargs
   })
   .command('list', 'List Configured SFCC Clients')
   .command('delete <client> [instance]', 'Delete Config for Client')
-  .command('watch [client] [instance]', 'Watch for Changes and Push Updates', {
+  .command('watch [client] [instance]', 'Watch for Code Changes and Push Updates', {
     log: {
       describe: 'Pipe Output to Log File ~/.sffc-cli.log',
       type: 'boolean',

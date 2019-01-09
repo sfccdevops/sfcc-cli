@@ -1,8 +1,8 @@
 ![Logo](img/logo.png "Logo")
 
-**[↤ Developer Overview](../README.md)**
+**[↤ Developer Overview](../README.md#developer-overview)**
 
-Setup
+`sfcc setup`
 ---
 
 > Get your SFCC Repo added to the SFCC CLI Config
