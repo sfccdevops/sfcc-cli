@@ -14,8 +14,6 @@ Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Window
 - [X] Watch for code changes and upload in background ( without being prompted for passwords )
 - [X] Log Viewing with Advanced Search & Filter Capabilities
 
-### NOTE: THIS IS A WORK IN PROGRESS
-
 Developer Overview
 ---
 

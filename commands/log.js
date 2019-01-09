@@ -42,7 +42,6 @@ module.exports = async options => {
 
     // Group Logs
     let groups = groupBy(files, ({displayname}) => displayname.split('-blade')[0])
-    let dates = groupBy(files, ({creationdate}) => creationdate.split('T')[0])
 
     // pick out logs we want to include
     if (options.include.length > 0) {
@@ -74,29 +73,11 @@ module.exports = async options => {
 
     // get list of log types
     if (options.list) {
-      console.log(chalk.green.bold('\nLog Levels:\n'))
+      console.log(chalk.green.bold('\nLog Types:\n'))
 
       forEach(keys(groups).sort(), group => {
         console.log('· ' + group)
       })
-
-      console.log('')
-
-      process.exit()
-    }
-
-    // get lost of log dates
-    if (options.dates) {
-      console.log(chalk.green.bold('\nLog Dates:\n'))
-
-      forEach(
-        keys(dates)
-          .sort()
-          .reverse(),
-        date => {
-          console.log('· ' + date)
-        }
-      )
 
       console.log('')
 
