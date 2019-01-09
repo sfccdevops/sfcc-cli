@@ -12,26 +12,27 @@ const upload = require('../lib/upload')
 module.exports = options => {
   let client = argv['_'][1] || null
   let instance = argv['_'][2] || null
-  let watching = null
+  let selected = null
   let errorMessage
   let logMessage
 
   const useLog = options.log
   const errorsOnly = options.errorsOnly
 
+  // Get Client & Instance, or check for Default
   if (client && instance) {
-    watching = config.get(client, instance)
+    selected = config.get(client, instance)
   } else {
     const defaultConfig = config.get(client, instance, true)
 
     if (defaultConfig) {
       client = defaultConfig.client
       instance = defaultConfig.instance
-      watching = defaultConfig.config
+      selected = defaultConfig.config
     }
   }
 
-  if (watching) {
+  if (selected) {
     let spinner
     const watcher = chokidar.watch('dir', {
       ignored: [/[/\\]\./, '**/node_modules/**'],
@@ -42,14 +43,14 @@ module.exports = options => {
     })
 
     // Add Instance Directory to Watch List
-    watcher.add(watching.d)
+    watcher.add(selected.d)
 
     // Watch for File Changes
     watcher.on('change', file => {
-      upload({file, spinner, watching, client, instance, options})
+      upload({file, spinner, selected, client, instance, options})
     })
     watcher.on('add', file => {
-      upload({file, spinner, watching, client, instance, options})
+      upload({file, spinner, selected, client, instance, options})
     })
 
     // @TODO: Watch for Removing Files

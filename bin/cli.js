@@ -50,6 +50,54 @@ const argv = yargs
       default: false
     }
   })
+  .command('log [client] [instance]', 'Stream log files from an instance', {
+    interval: {
+      describe: 'Polling interval (seconds)',
+      default: 2
+    },
+    lines: {
+      describe: 'Number of lines to display',
+      default: 100
+    },
+    include: {
+      describe: 'Log levels to include',
+      type: 'array',
+      default: []
+    },
+    exclude: {
+      describe: 'Log levels to exclude',
+      type: 'array',
+      default: []
+    },
+    list: {
+      describe: 'Output a list of available log levels',
+      default: false
+    },
+    dates: {
+      describe: 'Output a list of available log dates',
+      default: false
+    },
+    filter: {
+      describe: 'Filter log messages by regexp',
+      default: null
+    },
+    length: {
+      describe: 'Length to truncate a log message',
+      default: null
+    },
+    search: {
+      describe: 'Search all log files',
+      default: false
+    },
+    'no-timestamp': {
+      describe: "Don't convert timestamps to local time",
+      default: false
+    },
+    latest: {
+      describe: 'Show Latest Logs Only',
+      boolean: false
+    }
+  })
   .example('$0 delete my-client sandbox', 'Delete my-client sandbox config')
   .example('$0 watch my-client sandbox', 'Watch for my-client sandbox changes')
   .demand(1)

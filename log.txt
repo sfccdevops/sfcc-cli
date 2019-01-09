@@ -1,0 +1,694 @@
+var files = [{
+    creationdate: '2019-01-09T03:01:01Z',
+    getlastmodified: 'Wed, 09 Jan 2019 03:01:01 GMT',
+    displayname: '',
+    getetag: '7c8a66adc6ebaccce2acb8554223f964',
+    resourcetype: {
+      collection: [Array]
+    }
+  },
+  {
+    creationdate: '2019-01-09T06:37:01Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '1218',
+    getcontenttype: 'text/plain',
+    getetag: 'ada6fde2e64bb4f3b1aa13dea1141388',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T23:59:26Z',
+    getlastmodified: 'Thu, 03 Jan 2019 23:59:26 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '1211285',
+    getcontenttype: 'text/plain',
+    getetag: '5c52cf05a4329478b20473a0273eaa12',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T01:24:56Z',
+    getlastmodified: 'Thu, 03 Jan 2019 01:24:56 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '118896',
+    getcontenttype: 'text/plain',
+    getetag: '7a2b02d3d4283e6e64f96e7408812fc2',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T02:05:56Z',
+    getlastmodified: 'Sun, 06 Jan 2019 02:05:56 GMT',
+    displayname: 'quota-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '918',
+    getcontenttype: 'text/plain',
+    getetag: 'aadc08e64d70a6cefd77a28edc3255e0',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T21:25:02Z',
+    getlastmodified: 'Wed, 02 Jan 2019 21:25:02 GMT',
+    displayname: 'sysevent-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '16108',
+    getcontenttype: 'text/plain',
+    getetag: 'dd81492418f3b5c001d7eb20befe9118',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T23:59:08Z',
+    getlastmodified: 'Sat, 05 Jan 2019 23:59:08 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '8963940',
+    getcontenttype: 'text/plain',
+    getetag: '271811741fbf705702b46d1ba23c1d03',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T06:53:01Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:53:01 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '2813851',
+    getcontenttype: 'text/plain',
+    getetag: '615f08ff04af632bf2e638f9ccd71422',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:55:06Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:55:06 GMT',
+    displayname: 'customerror-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '6000',
+    getcontenttype: 'text/plain',
+    getetag: '5b083e1053b14427ba711f69e865d3d3',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:46:09Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:46:09 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '13615',
+    getcontenttype: 'text/plain',
+    getetag: '3504d2b40ac07357e1256cb73de0ae42',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T00:07:42Z',
+    getlastmodified: 'Thu, 03 Jan 2019 00:07:42 GMT',
+    displayname: 'quota-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '449',
+    getcontenttype: 'text/plain',
+    getetag: 'd5f8191a105150ebb8f45e113ba5648d',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T23:59:17Z',
+    getlastmodified: 'Tue, 08 Jan 2019 23:59:17 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '8969473',
+    getcontenttype: 'text/plain',
+    getetag: '44115e1fe9368206532290e9aad9c097',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T03:30:35Z',
+    getlastmodified: 'Tue, 08 Jan 2019 03:30:35 GMT',
+    displayname: 'service-main-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '294',
+    getcontenttype: 'text/plain',
+    getetag: 'a78329aaba8926fb99883e981ab9ee0f',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T21:24:57Z',
+    getlastmodified: 'Wed, 02 Jan 2019 21:24:57 GMT',
+    displayname: 'info-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '262169',
+    getcontenttype: 'text/plain',
+    getetag: 'f57ca0f9ad070fc215ce79dbadfc5088',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:36:01Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:36:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '6067',
+    getcontenttype: 'text/plain',
+    getetag: '95b898cf2d5b355d59f3780ce6c221ba',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T23:49:01Z',
+    getlastmodified: 'Sat, 05 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '2b9dde31ab9241a26b86ce249d9b0e7e',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T21:22:39Z',
+    getlastmodified: 'Wed, 02 Jan 2019 21:22:39 GMT',
+    displayname: 'staging-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '82',
+    getcontenttype: 'text/plain',
+    getetag: '26a26d33723025a2a8faa80449dd1d75',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T01:24:56Z',
+    getlastmodified: 'Thu, 03 Jan 2019 01:24:56 GMT',
+    displayname: 'customerror-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '7384',
+    getcontenttype: 'text/plain',
+    getetag: 'c46eead34ed323e631164c517783cf25',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:55:06Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:55:06 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '121392',
+    getcontenttype: 'text/plain',
+    getetag: 'fdc85c6ad3b43e2456c75c1541de4608',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T02:47:02Z',
+    getlastmodified: 'Sun, 06 Jan 2019 02:47:02 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: '5f70b705648353bffeccb4cbea4a4f5b',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T06:51:42Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:51:42 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '374300',
+    getcontenttype: 'text/plain',
+    getetag: 'f107ad2a6f558fcca254753caf233d8e',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-01T23:58:25Z',
+    getlastmodified: 'Tue, 01 Jan 2019 23:58:25 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190101.log',
+    getcontentlength: '1211204',
+    getcontenttype: 'text/plain',
+    getetag: 'f9f7fd7e556e4aed9417f611ed9bcdb6',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-01T23:37:01Z',
+    getlastmodified: 'Tue, 01 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190101.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: '8ae5c291a1c7c66f2d48d179fcb2873b',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T22:31:17Z',
+    getlastmodified: 'Tue, 08 Jan 2019 22:31:17 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '6865',
+    getcontenttype: 'text/plain',
+    getetag: '524343515879503bf4b5b0e7a84f5ca0',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:29:03Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:29:03 GMT',
+    displayname: 'api-deprecation-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '223',
+    getcontenttype: 'text/plain',
+    getetag: '1885e1d062d51687106b7068d406fdb1',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:29:24Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:29:24 GMT',
+    displayname: 'service-main-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '4532',
+    getcontenttype: 'text/plain',
+    getetag: '2f9c638c3525e29be4b004ca443492a7',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T02:47:02Z',
+    getlastmodified: 'Wed, 09 Jan 2019 02:47:02 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '3261',
+    getcontenttype: 'text/plain',
+    getetag: '39e41a3c4e613974a8164f3ec700554c',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T23:54:58Z',
+    getlastmodified: 'Fri, 04 Jan 2019 23:54:58 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '1206821',
+    getcontenttype: 'text/plain',
+    getetag: '0d29c53dcab272c8b4979ae725ace212',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T23:56:01Z',
+    getlastmodified: 'Sat, 05 Jan 2019 23:56:01 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '1211186',
+    getcontenttype: 'text/plain',
+    getetag: 'f4a2f85d324a5cf9337a3950846aa410',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T21:22:53Z',
+    getlastmodified: 'Wed, 02 Jan 2019 21:22:53 GMT',
+    displayname: 'jceProviderUsage-blade1-6.mon.demandware.net-0-appserver.log',
+    getcontentlength: '0',
+    getcontenttype: 'text/plain',
+    getetag: 'fb1879517a730b36e0a82016aa253b96',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:59:32Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:59:32 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '8973760',
+    getcontenttype: 'text/plain',
+    getetag: '46cf722855ff87103e37aab950d12fd2',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T02:47:03Z',
+    getlastmodified: 'Thu, 03 Jan 2019 02:47:03 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: 'e6b41d01a64ed133b5c8bdaa834d1a01',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T23:49:01Z',
+    getlastmodified: 'Thu, 03 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '8c9d48c8f2432f67dfde8f740aaeccd7',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T23:36:01Z',
+    getlastmodified: 'Tue, 08 Jan 2019 23:36:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '5255',
+    getcontenttype: 'text/plain',
+    getetag: 'f04d2bb031541348447735d16fcb9384',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T02:04:56Z',
+    getlastmodified: 'Sun, 06 Jan 2019 02:04:56 GMT',
+    displayname: 'customerror-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '923',
+    getcontenttype: 'text/plain',
+    getetag: '2904b5ee04316f7e2449e6bb42a7eb6c',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:31:17Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:31:17 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '28125',
+    getcontenttype: 'text/plain',
+    getetag: '5ee53c9bf6695a1bb4aa6a1dd0fb4fea',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T03:03:48Z',
+    getlastmodified: 'Wed, 02 Jan 2019 03:03:48 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '1211',
+    getcontenttype: 'text/plain',
+    getetag: 'fb37d0691e9b92390d2bb3a7ac23a381',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T06:21:01Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:21:01 GMT',
+    displayname: 'codeprofiler',
+    getetag: '980aab203cf762a2f52667d3ede61421',
+    resourcetype: {
+      collection: [Array]
+    }
+  },
+  {
+    creationdate: '2019-01-03T22:50:01Z',
+    getlastmodified: 'Thu, 03 Jan 2019 22:50:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '3997',
+    getcontenttype: 'text/plain',
+    getetag: '55c11295124f708a48fd965c7e7eeb53',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T03:46:14Z',
+    getlastmodified: 'Tue, 08 Jan 2019 03:46:14 GMT',
+    displayname: 'quota-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '956',
+    getcontenttype: 'text/plain',
+    getetag: '57f4923f6a0c8081d539e463f07891db',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T02:47:03Z',
+    getlastmodified: 'Wed, 09 Jan 2019 02:47:03 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: 'b7e375ff33ea201470d8d596a82e4ec0',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:36:01Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:36:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '3210',
+    getcontenttype: 'text/plain',
+    getetag: '93f0ad9562b80134a07fd5698ec385d9',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T23:50:01Z',
+    getlastmodified: 'Sat, 05 Jan 2019 23:50:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '2649',
+    getcontenttype: 'text/plain',
+    getetag: '9d8cb97bcaa0ff0e06f8d65a46e80ba5',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T02:47:02Z',
+    getlastmodified: 'Sat, 05 Jan 2019 02:47:02 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: 'e854a1091d63732b535b7e873ede0051',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T22:50:01Z',
+    getlastmodified: 'Fri, 04 Jan 2019 22:50:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '3549',
+    getcontenttype: 'text/plain',
+    getetag: '8725c07bd9b88d13ac6af3fea137d5c2',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:37:01Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: 'ab537e5d28d82f1f12827d294952257e',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T02:47:02Z',
+    getlastmodified: 'Mon, 07 Jan 2019 02:47:02 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: 'c93a3a321f977212d2ee2a3c93fc570d',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:37:01Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: '7ab9427db1a36775acb935f2b1fe6fb8',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:31:17Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:31:17 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '7270',
+    getcontenttype: 'text/plain',
+    getetag: '91c256abfe749e0583ea75e3a6de49a5',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:49:01Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '283fb30aa864f023f3de0b0021c0d290',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-01T23:59:22Z',
+    getlastmodified: 'Tue, 01 Jan 2019 23:59:22 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190101.log',
+    getcontentlength: '8957845',
+    getcontenttype: 'text/plain',
+    getetag: '955e29db5c4f3dc4803424a3295fb3fe',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T21:22:51Z',
+    getlastmodified: 'Wed, 02 Jan 2019 21:22:51 GMT',
+    displayname: 'tomcat.log',
+    getcontentlength: '24005',
+    getcontenttype: 'text/plain',
+    getetag: 'dabc6d96d55f58e406e9d3c65a72f464',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-05T23:37:01Z',
+    getlastmodified: 'Sat, 05 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190105.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: '5467e651d76af33011109ca335cdc33f',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:59:58Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:59:58 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '8948731',
+    getcontenttype: 'text/plain',
+    getetag: '4da9eccb31e587dba9e7014a15390e0e',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T23:59:58Z',
+    getlastmodified: 'Fri, 04 Jan 2019 23:59:58 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '8956944',
+    getcontenttype: 'text/plain',
+    getetag: '76839056250162b662a4fdfddaabc0ed',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:49:01Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '43442baec2af3b2276afa82403b80af6',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:58:23Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:58:23 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '1226760',
+    getcontenttype: 'text/plain',
+    getetag: '74fa519586b521b0e1359f718e1ae412',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:57:05Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:57:05 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '1230413',
+    getcontenttype: 'text/plain',
+    getetag: '588d1a68a98b96c9db6af52708cf5162',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T23:37:01Z',
+    getlastmodified: 'Tue, 08 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: '78192166bff135c6f661530fbe1784c1',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T23:49:01Z',
+    getlastmodified: 'Fri, 04 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: 'e9577c3dc59e55d2741005dcb07bfef6',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T23:59:11Z',
+    getlastmodified: 'Tue, 08 Jan 2019 23:59:11 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '1280528',
+    getcontenttype: 'text/plain',
+    getetag: '13b34104f22a858c6f2fbd371fe79383',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-01T20:36:01Z',
+    getlastmodified: 'Tue, 01 Jan 2019 20:36:01 GMT',
+    displayname: 'api-blade1-6.mon.demandware.net-0-appserver-20190101.log',
+    getcontentlength: '3109',
+    getcontenttype: 'text/plain',
+    getetag: '55556963f6d52cde55f53c76160b6887',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:37:01Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: 'a100fcc5c041a37fc0fa4a1338a7cb7a',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T03:30:33Z',
+    getlastmodified: 'Tue, 08 Jan 2019 03:30:33 GMT',
+    displayname: 'api-deprecation-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '217',
+    getcontenttype: 'text/plain',
+    getetag: '3818aa409c35801ac89026a025929eee',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T06:31:17Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:31:17 GMT',
+    displayname: 'error-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '2423',
+    getcontenttype: 'text/plain',
+    getetag: '9786afe2961896d158f9f46de8123117',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-06T23:49:01Z',
+    getlastmodified: 'Sun, 06 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190106.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '13b3ddc97f0a285e1b10ca7b2c37bbc0',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T02:47:02Z',
+    getlastmodified: 'Fri, 04 Jan 2019 02:47:02 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: '741fc69c2f41f8d68e71091c1313c4c8',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-02T23:39:53Z',
+    getlastmodified: 'Wed, 02 Jan 2019 23:39:53 GMT',
+    displayname: 'quota-blade1-6.mon.demandware.net-0-appserver-20190102.log',
+    getcontentlength: '1783',
+    getcontenttype: 'text/plain',
+    getetag: '7bfd6cc7a1dd56b7f806124d79798514',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T23:37:01Z',
+    getlastmodified: 'Thu, 03 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: 'b8b38742ffa5b279498e49b009ee0347',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-03T23:59:26Z',
+    getlastmodified: 'Thu, 03 Jan 2019 23:59:26 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190103.log',
+    getcontentlength: '8968796',
+    getcontenttype: 'text/plain',
+    getetag: 'd3970d4bdb2011086eb4e26c38c9c324',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-04T23:37:01Z',
+    getlastmodified: 'Fri, 04 Jan 2019 23:37:01 GMT',
+    displayname: 'analyticsengine-blade1-6.mon.demandware.net-0-appserver-20190104.log',
+    getcontentlength: '4176',
+    getcontenttype: 'text/plain',
+    getetag: 'dbb7934a126c8c76a0a8e33fac1a02b9',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-09T06:49:01Z',
+    getlastmodified: 'Wed, 09 Jan 2019 06:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190109.log',
+    getcontentlength: '5166',
+    getcontenttype: 'text/plain',
+    getetag: '8c09daf45ec75b76c506bc2b5cd16459',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T23:49:01Z',
+    getlastmodified: 'Tue, 08 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '1b3e1c81f39e3eb35f4213aa91531914',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:58:08Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:58:08 GMT',
+    displayname: 'warn-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '1290817',
+    getcontenttype: 'text/plain',
+    getetag: '3de858554e7a2480120d888ac50dda2d',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-07T23:59:54Z',
+    getlastmodified: 'Mon, 07 Jan 2019 23:59:54 GMT',
+    displayname: 'jobs-blade1-6.mon.demandware.net-0-appserver-20190107.log',
+    getcontentlength: '8968862',
+    getcontenttype: 'text/plain',
+    getetag: '0c2c58ee20b99bc87fc3e3419127d4b1',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-01T23:49:01Z',
+    getlastmodified: 'Tue, 01 Jan 2019 23:49:01 GMT',
+    displayname: 'wwd-blade1-6.mon.demandware.net-0-appserver-20190101.log',
+    getcontentlength: '17712',
+    getcontenttype: 'text/plain',
+    getetag: '70ecdad6e5ea49afec0a62f1f0d55c1e',
+    resourcetype: ''
+  },
+  {
+    creationdate: '2019-01-08T02:47:02Z',
+    getlastmodified: 'Tue, 08 Jan 2019 02:47:02 GMT',
+    displayname: 'syslog-blade1-6.mon.demandware.net-0-appserver-20190108.log',
+    getcontentlength: '908',
+    getcontenttype: 'text/plain',
+    getetag: '20d2358ebd917840539ee81755a1cd42',
+    resourcetype: ''
+  }
+]
