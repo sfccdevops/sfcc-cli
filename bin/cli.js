@@ -41,9 +41,13 @@ const argv = yargs
   .command('list', 'List Configured SFCC Clients')
   .command('delete <client> [instance]', 'Delete Config for Client')
   .command('watch [client] [instance]', 'Watch for Changes and Push Updates', {
-    spinner: {
-      describe: 'Show the watch spinner',
-      default: true
+    log: {
+      describe: 'Pipe Output to Log File ~/.sffc-cli.log',
+      default: false
+    },
+    'errors-only': {
+      describe: 'Only Show Notification for Errors',
+      default: false
     }
   })
   .example('$0 delete my-client sandbox', 'Delete my-client sandbox config')
@@ -56,7 +60,7 @@ const command = argv._[0]
 
 try {
   debug(`Executing ${command}`)
-  require(path.join(__dirname, `../commands/${command}.js`))()
+  require(path.join(__dirname, `../commands/${command}.js`))(argv)
 } catch (err) {
   if (err.code === 'MODULE_NOT_FOUND') {
     console.log(chalk.red.bold(`\n✖ Command 'sfcc ${command}' not recognized\n`))
