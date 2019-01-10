@@ -7,6 +7,8 @@
 
 > Stream/Search log files from an instance
 
+![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
+
 If you only have a single project, you can run:
 
 ```bash

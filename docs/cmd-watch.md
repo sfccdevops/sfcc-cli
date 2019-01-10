@@ -7,6 +7,8 @@
 
 > Watch for Code Changes and Push Updates
 
+![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
+
 Watch for any changes to your projects source code, and automagically upload in the background, while you use whatever IDE you want.
 
 If you have already run `sfcc setup`, and you only have a single project, you can run:

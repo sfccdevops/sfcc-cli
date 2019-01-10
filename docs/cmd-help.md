@@ -7,6 +7,8 @@
 
 > Get Help when you need it
 
+![demo](https://sfcc-cli.s3.amazonaws.com/help.gif)
+
 You can get help at any time by running:
 
 ```bash

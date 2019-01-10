@@ -5,6 +5,9 @@ SFCC CLI
 
 > Command Line Interface for Salesforce Commerce Cloud Sandbox Development
 
+![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
+
 Introduction
 ---
 
