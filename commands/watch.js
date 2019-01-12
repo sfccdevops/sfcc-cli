@@ -63,7 +63,7 @@ module.exports = options => {
 
             exec(cmd, (err, data, stderr) => {
               if (err || stderr) {
-                console.error(err, stderr)
+                console.log(chalk.red.bold(`✖ Build Error: ${err} {stderr}`))
               }
             })
           }
@@ -73,13 +73,12 @@ module.exports = options => {
 
     // Watch for File Changes
     watcher.on('change', file => {
-      // Check if we need to start a build
-      buildCheck(file)
       upload({file, spinner, selected, client, instance, options})
+      buildCheck(file)
     })
     watcher.on('add', file => {
-      buildCheck(file)
       upload({file, spinner, selected, client, instance, options})
+      buildCheck(file)
     })
 
     // @TODO: Watch for Removing Files
