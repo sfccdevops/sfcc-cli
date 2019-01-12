@@ -1,6 +1,6 @@
 {
   "name": "sfcc-cli",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Command Line Interface for Salesforce Commerce Cloud Sandbox Development",
   "homepage": "https://github.com/redvanworkshop/sfcc-cli#readme",
   "license": "MIT",
@@ -70,7 +70,7 @@
     "prompt": "^1.0.0",
     "prompt-confirm": "^2.0.4",
     "truncate-logs": "^1.0.4",
-    "xml2js": "^0.4.19",
+    "xml-js": "^1.6.9",
     "yargs": "^12.0.5"
   }
 }

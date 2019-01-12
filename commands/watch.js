@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const chokidar = require('chokidar')
 const ora = require('ora')
 const path = require('path')
+const {exec} = require('child_process')
 
 const logger = require('../lib/logger')()
 const notify = require('../lib/notify')()
@@ -34,28 +35,56 @@ module.exports = options => {
 
   if (selected) {
     let spinner
-    const watcher = chokidar.watch('dir', {
+    const watcher = chokidar.watch(selected.d, {
       ignored: [/[/\\]\./, '**/node_modules/**'],
       ignoreInitial: true,
       persistent: true,
-      awaitWriteFinish: true,
-      atomic: true
+      awaitWriteFinish: true
     })
 
-    // Add Instance Directory to Watch List
-    watcher.add(selected.d)
+    const buildCheck = file => {
+      if (Object.keys(selected.b).length > 0) {
+        const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
+        Object.keys(selected.b).map(build => {
+          const builder = selected.b[build]
+          if (
+            builder.enabled &&
+            new RegExp(builder.watch.join('|')).test(checkPath) &&
+            typeof builder.cmd.exec !== 'undefined' &&
+            builder.cmd.exec.length > 0
+          ) {
+            const cmd = builder.cmd.exec
+            const building = build.split('_')
+            console.log(
+              `\n${chalk.bgGreen.white.bold(' BUILDING ')} ${chalk.cyan.bold(
+                building[1]
+              )} for cartridge ${chalk.magenta.bold(building[0])} ...\n\n`
+            )
+
+            exec(cmd, (err, data, stderr) => {
+              if (err || stderr) {
+                console.error(err, stderr)
+              }
+            })
+          }
+        })
+      }
+    }
 
     // Watch for File Changes
     watcher.on('change', file => {
+      // Check if we need to start a build
+      buildCheck(file)
       upload({file, spinner, selected, client, instance, options})
     })
     watcher.on('add', file => {
+      buildCheck(file)
       upload({file, spinner, selected, client, instance, options})
     })
 
     // @TODO: Watch for Removing Files
     watcher.on('unlink', file => {
-      console.log('UNLINK', file)
+      console.log(`${chalk.red('✗ REMOVING')} ${file.replace(selected.d, '.')}`)
     })
 
     // Watch for Errors
@@ -91,7 +120,7 @@ module.exports = options => {
       if (useLog) {
         logger.log(logMessage, true)
       } else {
-        spinner = ora(`${logMessage} [Ctrl-C to Cancel]`).start()
+        spinner = ora(`${chalk.bold(logMessage)} [Ctrl-C to Cancel]\n`).start()
       }
     })
   } else if (client && instance) {
