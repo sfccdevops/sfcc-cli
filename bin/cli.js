@@ -49,12 +49,17 @@ const argv = yargs
   .command('delete <client> [instance]', 'Delete Config for Client')
   .command('watch [client] [instance]', 'Watch for Code Changes and Push Updates', {
     log: {
-      describe: 'Pipe Output to Log File ~/.sffc-cli.log',
+      describe: 'Pipe Output to ~/.sffc-cli.log',
       type: 'boolean',
       default: false
     },
     'errors-only': {
       describe: 'Only Show Notification for Errors',
+      type: 'boolean',
+      default: false
+    },
+    'live-reload': {
+      describe: 'Reload Browser after file change',
       type: 'boolean',
       default: false
     }

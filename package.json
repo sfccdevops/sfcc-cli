@@ -57,6 +57,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bluebird": "^3.5.3",
+    "browser-refresh": "^1.7.3",
     "chalk": "^2.4.2",
     "chokidar": "^2.0.4",
     "debug": "^4.1.1",
