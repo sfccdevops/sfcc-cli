@@ -5,6 +5,7 @@ const prompt = require('prompt')
 const slug = require('slug')
 
 const config = require('../lib/config')()
+const builds = require('../lib/builds')
 
 module.exports = async () => {
   const setDefaults =
@@ -129,6 +130,9 @@ module.exports = async () => {
           newConfig[client] = {}
         }
 
+        // Fetch Build Scripts from Project Directory
+        const builders = builds(result.d)
+
         // Create / Overwrite SFCC Instance for Client
         newConfig[client][alias] = {
           h: result.h,
@@ -136,7 +140,8 @@ module.exports = async () => {
           a: result.a,
           d: result.d,
           u: result.u,
-          p: result.p
+          p: result.p,
+          b: builders
         }
 
         // Write Config File
