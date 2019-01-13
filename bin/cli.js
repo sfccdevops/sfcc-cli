@@ -57,11 +57,6 @@ const argv = yargs
       describe: 'Only Show Notification for Errors',
       type: 'boolean',
       default: false
-    },
-    'live-reload': {
-      describe: 'Reload Browser after file change',
-      type: 'boolean',
-      default: false
     }
   })
   .command('log [client] [instance]', 'Stream log files from an instance', {
@@ -115,6 +110,26 @@ const argv = yargs
       describe: 'Show Latest Logs Only',
       type: 'boolean',
       default: false
+    }
+  })
+  .command('live-reload [client] [instance]', 'Reload Sandbox Browser after file change', {
+    delay: {
+      alias: 'd',
+      describe: 'Timeout Delay after Upload (seconds)',
+      type: 'number',
+      default: 2
+    },
+    include: {
+      alias: 'i',
+      describe: 'File Extensions to Include',
+      type: 'array',
+      default: []
+    },
+    exclude: {
+      alias: 'e',
+      describe: 'File Extensions to Exclude',
+      type: 'array',
+      default: []
     }
   })
   .example('sfcc delete my-client sandbox', 'Delete my-client sandbox config')
