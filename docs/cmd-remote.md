@@ -5,9 +5,9 @@
 `sfcc remote`
 ---
 
-> Remote Control for your Sandbox
+> Remote Control for your Sandbox Storefront
 
-![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/remote.gif)
 
 If you only have a single project, you can run:
 

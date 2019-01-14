@@ -5,8 +5,9 @@ SFCC CLI
 
 > Command Line Interface for Salesforce Commerce Cloud Sandbox Development
 
-![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
 ![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/remote.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
 
 
 Introduction
@@ -31,7 +32,7 @@ Developer Overview
 * [`sfcc delete`](docs/cmd-delete.md) - Delete Config for Client
 * [`sfcc watch`](docs/cmd-watch.md) - Watch for Changes and Push Updates
 * [`sfcc log`](docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
-* [`sfcc remote`](docs/cmd-remote.md) - Remote Control for your Sandbox
+* [`sfcc remote`](docs/cmd-remote.md) - Remote Control for your Sandbox Storefront
 * [`sfcc help`](docs/cmd-help.md) - Get Help when you need it
 
 #### Additional Information
