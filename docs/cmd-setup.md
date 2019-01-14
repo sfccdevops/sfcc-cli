@@ -57,3 +57,42 @@ Code Version   | `-v`  | No       | `develop` | SFCC Code Version to use
   }
 }
 ```
+
+If you have Eclipse Build scripts in your cartridges ( `*.launch` files contained inside `.externalToolBuilders` ), these will also get added to your config file.  An exammple of that project might look like this:
+
+```json
+{
+  "my-client": {
+    "sandbox": {
+      "h": "dev04-web-mysandbox.demandware.net",
+      "d": "/Users/RVW/Projects/mysandbox",
+      "u": "my@email.com",
+      "p": "my^pass",
+      "a": "sandbox",
+      "v": "develop",
+      "b": {
+        "gulp-builder-javascript-builder": {
+          "enabled": true,
+          "watch": [
+            "/app_storefront_core/cartridge/js"
+          ],
+          "cmd": {
+            "basedir": "/path/to/gulp_builder",
+            "exec": "cd /path/to/gulp_builder; gulp js --basedir=/path/to/gulp_builder"
+          }
+        },
+        "gulp-builder-styles-builder": {
+          "enabled": true,
+          "watch": [
+            "/app_storefront_core/cartridge/scss"
+          ],
+          "cmd": {
+            "basedir": "/path/to/gulp_builder",
+            "exec": "cd /path/to/gulp_builder; gulp styles --basedir=/path/to/gulp_builder"
+          }
+        }
+      }
+    }
+  }
+}
+```

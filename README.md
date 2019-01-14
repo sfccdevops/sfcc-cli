@@ -13,9 +13,11 @@ Introduction
 
 Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Windows, and Linux.
 
-- [X] Easily Manage Multiple Clients & Instances
-- [X] Watch for code changes and upload in background ( without being prompted for passwords )
-- [X] Log Viewing with Advanced Search & Filter Capabilities
+![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Easily Manage Multiple Clients & Instances
+![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Watch for code changes and upload in background ( without being prompted for passwords )
+![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Support for Eclipse Build Processes
+![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Log Viewing with Advanced Search & Filter Capabilities
+![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Sandbox Storefront "Remote Control"
 
 Developer Overview
 ---
@@ -27,6 +29,7 @@ Developer Overview
 * [`sfcc delete`](docs/cmd-delete.md) - Delete Config for Client
 * [`sfcc watch`](docs/cmd-watch.md) - Watch for Changes and Push Updates
 * [`sfcc log`](docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
+* [`sfcc remote`](docs/cmd-remote.md) - Remote Control for your Sandbox
 * [`sfcc help`](docs/cmd-help.md) - Get Help when you need it
 
 #### Additional Information

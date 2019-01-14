@@ -1,6 +1,7 @@
 const argv = require('minimist')(process.argv.slice(2))
 const chalk = require('chalk')
 const chokidar = require('chokidar')
+const ipc = require('node-ipc')
 const ora = require('ora')
 const path = require('path')
 const {exec} = require('child_process')
@@ -15,7 +16,6 @@ module.exports = options => {
   let instance = argv['_'][2] || null
   let selected = null
   let errorMessage
-  let logMessage
 
   const useLog = options.log
   const errorsOnly = options.errorsOnly
@@ -35,11 +35,28 @@ module.exports = options => {
 
   if (selected) {
     let spinner
+
     const watcher = chokidar.watch(selected.d, {
       ignored: [/[/\\]\./, '**/node_modules/**'],
       ignoreInitial: true,
       persistent: true,
       awaitWriteFinish: true
+    })
+
+    // Connect to Remote Message Bus
+    let remote = null
+
+    ipc.config.id = 'upload'
+    ipc.config.retry = 1500
+    ipc.config.silent = true
+
+    ipc.connectTo('remote', () => {
+      ipc.of.remote.on('connect', () => {
+        remote = ipc.of.remote
+      })
+      ipc.of.remote.on('disconnect', () => {
+        remote = null
+      })
     })
 
     const buildCheck = file => {
@@ -71,13 +88,20 @@ module.exports = options => {
       }
     }
 
+    const callback = () => {
+      if (typeof remote.emit !== 'undefined') {
+        remote.emit('message', 'live-reload')
+      }
+    }
+
     // Watch for File Changes
     watcher.on('change', file => {
-      upload({file, spinner, selected, client, instance, options})
+      upload({file, spinner, selected, client, instance, options, callback})
       buildCheck(file)
     })
+
     watcher.on('add', file => {
-      upload({file, spinner, selected, client, instance, options})
+      upload({file, spinner, selected, client, instance, options, callback})
       buildCheck(file)
     })
 
@@ -115,11 +139,12 @@ module.exports = options => {
         })
       }
 
-      logMessage = `Watching ${client} ${instance}`
       if (useLog) {
-        logger.log(logMessage, true)
+        logger.log(`Watching ${client} ${instance}`, true)
       } else {
-        spinner = ora(`${chalk.bold(logMessage)} [Ctrl-C to Cancel]\n`).start()
+        spinner = ora(
+          `${chalk.bold('WATCHING')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(instance)} [Ctrl-C to Cancel]\n`
+        ).start()
       }
     })
   } else if (client && instance) {

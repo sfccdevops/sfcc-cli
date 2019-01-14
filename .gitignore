@@ -1,7 +1,4 @@
 .DS_Store
 node_modules
 npm-debug.log
-
-# Generated SSL Files
-localhost.crt
-localhost.key
+remote/ssl/sfcc-cli-localhost.*

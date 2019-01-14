@@ -47,7 +47,7 @@ const argv = yargs
   })
   .command('list', 'List Configured SFCC Clients')
   .command('delete <client> [instance]', 'Delete Config for Client')
-  .command('watch [client] [instance]', 'Watch for Code Changes and Push Updates', {
+  .command('watch [client] [instance]', 'Watch for Changes and Push Updates', {
     log: {
       describe: 'Pipe Output to ~/.sffc-cli.log',
       type: 'boolean',
@@ -112,29 +112,17 @@ const argv = yargs
       default: false
     }
   })
-  .command('live-reload [client] [instance]', 'Reload Sandbox Browser after file change', {
-    delay: {
-      alias: 'd',
-      describe: 'Timeout Delay after Upload (seconds)',
-      type: 'number',
-      default: 2
-    },
-    include: {
-      alias: 'i',
-      describe: 'File Extensions to Include',
-      type: 'array',
-      default: []
-    },
-    exclude: {
-      alias: 'e',
-      describe: 'File Extensions to Exclude',
-      type: 'array',
-      default: []
+  .command('remote [client] [instance]', 'Remote Control your Sandbox', {
+    'live-reload': {
+      describe: 'Enable Live Reload on Code Change',
+      type: 'boolean',
+      default: false
     }
   })
   .example('sfcc delete my-client sandbox', 'Delete my-client sandbox config')
   .example('sfcc watch my-client sandbox', 'Watch for my-client sandbox changes')
   .example('sfcc log -i customerror --latest', 'Watch Latest Custom Error Logs')
+  .example('sfcc remote --use=live-reload', 'Live Reload Sandbox on Changes')
   .demand(1)
   .help()
   .version().argv

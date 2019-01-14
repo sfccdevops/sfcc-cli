@@ -1,5 +1,0 @@
-{
-  "port":"182223",
-  "sslCert": "localhost.crt",
-  "sslKey": "localhost.key"
-}

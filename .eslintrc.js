@@ -7,7 +7,7 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    browser: false
+    browser: true
   },
   plugins: [
     'prettier'
@@ -35,5 +35,8 @@ module.exports = {
       }
     ],
     'no-console': 0
+  },
+  globals: {
+    'io': true
   }
 }
