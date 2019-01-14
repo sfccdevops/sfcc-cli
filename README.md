@@ -8,20 +8,18 @@ SFCC CLI
 ![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
 ![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
 
+
 Introduction
 ---
 
 Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Windows, and Linux.
 
-![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Easily Manage Multiple Clients & Instances
+- [X] Easily Manage Multiple Clients & Instances
+- [X] Watch for code changes and upload in background ( without being prompted for passwords )
+- [X] Support for Eclipse Build Processes
+- [X] Log Viewing with Advanced Search & Filter Capabilities
+- [X] Sandbox Storefront "Remote Control"
 
-![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Watch for code changes and upload in background ( without being prompted for passwords )
-
-![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Support for Eclipse Build Processes
-
-![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Log Viewing with Advanced Search & Filter Capabilities
-
-![checkmark](https://sfcc-cli.s3.amazonaws.com/checkmark.png) Sandbox Storefront "Remote Control"
 
 Developer Overview
 ---
