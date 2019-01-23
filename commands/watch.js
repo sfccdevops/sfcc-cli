@@ -88,9 +88,9 @@ module.exports = options => {
       }
     }
 
-    const callback = () => {
-      if (typeof remote.emit !== 'undefined') {
-        remote.emit('message', 'live-reload')
+    const callback = data => {
+      if (remote && typeof remote.emit !== 'undefined') {
+        remote.emit('watch', data)
       }
     }
 
@@ -121,6 +121,16 @@ module.exports = options => {
         wait: true
       })
 
+      if (remote && typeof remote.emit !== 'undefined') {
+        remote.emit('watch', {
+          type: 'error',
+          client: client,
+          instance: instance,
+          message: error,
+          timestamp: new Date().toString()
+        })
+      }
+
       errorMessage = `✖ Watch Error for '${client}' '${instance}': ${error}.`
       if (useLog) {
         logger.log(errorMessage)
@@ -138,6 +148,18 @@ module.exports = options => {
           message: 'Waiting for Changes ...'
         })
       }
+
+      setTimeout(() => {
+        if (remote && typeof remote.emit !== 'undefined') {
+          remote.emit('watch', {
+            type: 'watch',
+            client: client,
+            instance: instance,
+            message: 'Starting Watcher',
+            timestamp: new Date().toString()
+          })
+        }
+      }, 100)
 
       if (useLog) {
         logger.log(`Watching ${client} ${instance}`, true)

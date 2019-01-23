@@ -4,11 +4,9 @@ const express = require('express')
 const fs = require('fs')
 const https = require('https')
 const ipc = require('node-ipc')
-const ora = require('ora')
 const path = require('path')
 
 const config = require('../lib/config')()
-const notify = require('../lib/notify')()
 
 const port = 8443
 
@@ -17,7 +15,6 @@ module.exports = async options => {
   let instance = argv['_'][2] || null
   let selected = null
   let remote
-  let reloadTimeout
 
   // Get Client & Instance, or check for Default
   if (client && instance) {
@@ -42,24 +39,13 @@ module.exports = async options => {
     ipc.config.retry = 1500
     ipc.config.silent = true
     ipc.serve(() => {
-      ipc.server.on('message', cmd => {
-        // Check if `remote` exists from socket.io and listen for commands
-        if (remote && typeof remote.emit !== 'undefined') {
-          // Handle Live Reload if enabled
-          if (cmd === 'live-reload' && options.liveReload) {
-            clearTimeout(reloadTimeout)
-            reloadTimeout = setTimeout(() => {
-              notify({
-                title: `${client} ${instance}`,
-                icon: path.join(__dirname, '../icons/', 'sfcc-reload.png'),
-                subtitle: 'LIVE RELOAD',
-                message: `Sending Reload Request to Sandbox`
-              })
-
-              remote.emit('refresh', true)
-            }, 3000)
-          }
-        }
+      ipc.server.on('message', message => {
+        console.log('MESSAGE', message)
+        remote.emit('message', message)
+      })
+      ipc.server.on('watch', data => {
+        console.log('WATCH', data)
+        remote.emit('watch', data)
       })
     })
 
@@ -103,15 +89,23 @@ module.exports = async options => {
       if (options.liveReload) {
         remote.emit('message', 'Live Reload Enabled')
       }
+
+      socket.on('message', message => {
+        console.log('MESSAGE', message)
+      })
+
+      socket.on('get-config', () => {
+        io.emit('set-config', config.getAll())
+      })
     })
 
     server.listen(port, function() {
       console.log(`\n${chalk.bold('IMPORTANT')}: Make sure your sandbox has the following script tag:`)
       console.log('<script src="https://localhost:8443/sfcc-cli-remote.js" id="sfcc-cli-remote"></script>\n')
 
-      ora(
-        `${chalk.bold('REMOTE')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(instance)} [Ctrl-C to Cancel]\n`
-      ).start()
+      // ora(
+      //   `${chalk.bold('REMOTE')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(instance)} [Ctrl-C to Cancel]\n`
+      // ).start()
     })
   }
 }
