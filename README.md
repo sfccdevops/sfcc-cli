@@ -50,14 +50,14 @@ Install
 cd ~
 git clone https://github.com/redvanworkshop/sfcc-cli.git
 cd sfcc-cli
-npm install -g
+npm install -g --no-optional
 sfcc setup
 ```
 
 #### Install via NPM
 
 ```bash
-npm install -g sfcc-cli
+npm install -g sfcc-cli --no-optional
 sfcc setup
 ```
 
