@@ -1,14 +1,14 @@
+const {exec} = require('child_process')
 const argv = require('minimist')(process.argv.slice(2))
 const chalk = require('chalk')
 const chokidar = require('chokidar')
 const ipc = require('node-ipc')
 const ora = require('ora')
 const path = require('path')
-const {exec} = require('child_process')
 
+const config = require('../lib/config')()
 const logger = require('../lib/logger')()
 const notify = require('../lib/notify')()
-const config = require('../lib/config')()
 const upload = require('../lib/upload')
 
 module.exports = options => {

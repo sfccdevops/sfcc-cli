@@ -6,10 +6,10 @@ const keys = require('lodash/keys')
 const pickBy = require('lodash/pickBy')
 const sortBy = require('lodash/sortBy')
 
+const config = require('../lib/config')()
 const find = require('../lib/find')
 const search = require('../lib/search')
 const tail = require('../lib/tail')
-const config = require('../lib/config')()
 
 module.exports = async options => {
   let client = argv['_'][1] || null
@@ -98,7 +98,9 @@ module.exports = async options => {
 
     try {
       // Start log output
-      options.search ? search(selected, groups, options) : tail(selected, logs, groups, options)
+      options.search
+        ? search(selected, client, instance, groups, options)
+        : tail(selected, client, instance, logs, groups, options)
     } catch (err) {
       console.log(err)
     }

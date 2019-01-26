@@ -112,17 +112,11 @@ const argv = yargs
       default: false
     }
   })
-  .command('remote [client] [instance]', 'Remote Control Sandbox Storefront', {
-    'live-reload': {
-      describe: 'Enable Live Reload on Code Change',
-      type: 'boolean',
-      default: false
-    }
-  })
+  .command('remote [client] [instance]', 'Enable Support for Browser Extension')
   .example('sfcc delete my-client sandbox', 'Delete my-client sandbox config')
   .example('sfcc watch my-client sandbox', 'Watch for my-client sandbox changes')
   .example('sfcc log -i customerror --latest', 'Watch Latest Custom Error Logs')
-  .example('sfcc remote --live-reload', 'Live Reload Sandbox Storefront on Changes')
+  .example('sfcc remote', 'Live Reload Sandbox Storefront on Changes')
   .demand(1)
   .help()
   .version().argv
