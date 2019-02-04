@@ -7,7 +7,7 @@
 
 > Watch for Code Changes and Push Updates
 
-![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif?v=1.1.0)
 
 Watch for any changes to your projects source code, and automagically upload in the background, while you use whatever IDE you want.
 

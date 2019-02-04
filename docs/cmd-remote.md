@@ -7,7 +7,7 @@
 
 > Connect to SFCC CLI via Browser Extension
 
-![demo](https://sfcc-cli.s3.amazonaws.com/remote.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/remote.gif?v=1.1.0)
 
 
 Browser Extension Setup

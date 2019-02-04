@@ -7,7 +7,7 @@
 
 > Get your SFCC Repo added to the SFCC CLI Config
 
-![demo](https://sfcc-cli.s3.amazonaws.com/setup.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/setup.gif?v=1.1.0)
 
 #### Enter Params via Prompt
 
