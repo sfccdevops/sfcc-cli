@@ -42,6 +42,10 @@ Developer Overview
 Install
 ---
 
+#### Requirements
+
+- [X] [Node v10+](https://nodejs.org/en/download/)
+
 #### Install via NPM
 
 ```bash
