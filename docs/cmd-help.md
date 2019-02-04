@@ -19,5 +19,7 @@ You can get help on a specific command by just adding `help` to the end of the c
 
 ```bash
 sfcc log help
+sfcc remote help
+sfcc setup help
 sfcc watch help
 ```

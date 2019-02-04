@@ -1,11 +1,12 @@
 const argv = require('minimist')(process.argv.slice(2))
 const chalk = require('chalk')
 const fs = require('fs')
+const path = require('path')
 const prompt = require('prompt')
 const slug = require('slug')
 
-const config = require('../lib/config')()
 const builds = require('../lib/builds')
+const config = require('../lib/config')()
 
 module.exports = async () => {
   const setDefaults =
@@ -28,6 +29,9 @@ module.exports = async () => {
   prompt.error = ''
   prompt.delimiter = ''
   prompt.override = argv
+
+  // Intentional Blank Line
+  console.log('')
 
   prompt.start()
   prompt.get(
@@ -85,6 +89,7 @@ module.exports = async () => {
         required: true,
         message: 'Directory does not exist. ( e.g. /Users/RVW/Projects/mysandbox )',
         conform: function(directory) {
+          directory = path.normalize(path.resolve(directory.replace(/^\/[a-z]\//, '/')))
           return fs.existsSync(directory)
         }
       },
@@ -130,15 +135,17 @@ module.exports = async () => {
           newConfig[client] = {}
         }
 
+        const directory = path.normalize(path.resolve(result.d.replace(/^\/[a-z]\//, '/')))
+
         // Fetch Build Scripts from Project Directory
-        const builders = builds(result.d)
+        const builders = builds(directory)
 
         // Create / Overwrite SFCC Instance for Client
         newConfig[client][alias] = {
           h: result.h,
           v: result.v,
           a: result.a,
-          d: result.d,
+          d: directory,
           u: result.u,
           p: result.p,
           b: builders
@@ -146,6 +153,8 @@ module.exports = async () => {
 
         // Write Config File
         config.set(newConfig, isUpdate)
+
+        process.exit()
       }
     }
   )

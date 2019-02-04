@@ -32,6 +32,7 @@ module.exports = async () => {
     }
 
     if (found) {
+      console.log('')
       const prompt = new confirm('Confirm Delete?')
       prompt.ask(function(confirmed) {
         if (confirmed) {
