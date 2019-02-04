@@ -5,8 +5,8 @@ const path = require('path')
 const prompt = require('prompt')
 const slug = require('slug')
 
-const config = require('../lib/config')()
 const builds = require('../lib/builds')
+const config = require('../lib/config')()
 
 module.exports = async () => {
   const setDefaults =

@@ -113,10 +113,16 @@ const argv = yargs
     }
   })
   .command('remote [client] [instance]', 'Enable Support for Browser Extension')
+  .example('sfcc setup', 'Setup SFCC Development')
+  .example('sfcc list', 'List Configured SFCC Clients')
   .example('sfcc delete my-client sandbox', 'Delete my-client sandbox config')
   .example('sfcc watch my-client sandbox', 'Watch for my-client sandbox changes')
   .example('sfcc log -i customerror --latest', 'Watch Latest Custom Error Logs')
   .example('sfcc remote', 'Live Reload Sandbox Storefront on Changes')
+  .example(' ', ' ')
+  .example('----------------------------------', '------------------------------------------')
+  .example('NEED MORE HELP ?', 'https://bit.ly/sfcc-cli-help')
+  .example('----------------------------------', '------------------------------------------')
   .demand(1)
   .help()
   .version().argv

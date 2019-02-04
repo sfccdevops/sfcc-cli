@@ -5,9 +5,7 @@ SFCC CLI
 
 > Command Line Interface for Salesforce Commerce Cloud Sandbox Development
 
-![demo](https://sfcc-cli.s3.amazonaws.com/log.gif)
-![demo](https://sfcc-cli.s3.amazonaws.com/remote.gif)
-![demo](https://sfcc-cli.s3.amazonaws.com/watch.gif)
+![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif)
 
 
 Introduction
@@ -19,7 +17,7 @@ Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Window
 - [X] Watch for code changes and upload in background ( without being prompted for passwords )
 - [X] Support for Eclipse Build Processes
 - [X] Log Viewing with Advanced Search & Filter Capabilities
-- [X] Sandbox Storefront "Remote Control"
+- [X] SFCC CLI integration via [Browser Extension](https://github.com/redvanworkshop/sfcc-remote)
 
 
 Developer Overview
@@ -44,6 +42,13 @@ Developer Overview
 Install
 ---
 
+#### Install via NPM
+
+```bash
+npm install -g sfcc-cli --no-optional
+sfcc setup
+```
+
 #### Install via Clone
 
 ```bash
@@ -51,13 +56,6 @@ cd ~
 git clone https://github.com/redvanworkshop/sfcc-cli.git
 cd sfcc-cli
 npm install -g --no-optional
-sfcc setup
-```
-
-#### Install via NPM
-
-```bash
-npm install -g sfcc-cli --no-optional
 sfcc setup
 ```
 
