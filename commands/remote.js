@@ -110,6 +110,8 @@ module.exports = async () => {
     })
 
     server.listen(port, function() {
+      // Intentional Blank Space
+      console.log('')
       spinner = ora(
         `${chalk.bold('REMOTE')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(instance)} [Ctrl-C to Cancel]\n`
       ).start()

@@ -23,10 +23,24 @@ sfcc remote
 
 Once the remote is turned on, all your `sfcc log` and `sfcc watch` output will be pushed to the browser extension.
 
+
 SSL Certificates
 ---
 
-In order for the SSL certificates to work locally, you will need to add the certificate to your system keys.
+**IMPORTANT:** After running `sfcc remote`, check that you can access the following URL in your browser:
+
+```
+https://localhost:8443/socket.io/socket.io.js
+```
+
+`localhost` certificates are kind of flakey, and you might see something like this, which is normal. Just click through that first time to `Always Trust` the certificate to avoid future headaches.
+
+![Error](img/ssl-error.png "Error")
+![Error](img/ssl-error-accept.png "Error")
+
+Once you've confirmed you can access the `socket.io.js` file in your browser, you are good to go.
+
+You can also do this manually, if needed:
 
 <details><summary>VIEW INSTRUCTIONS</summary>
 <p>
