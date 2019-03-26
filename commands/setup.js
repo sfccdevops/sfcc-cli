@@ -3,10 +3,10 @@ const chalk = require('chalk')
 const fs = require('fs')
 const path = require('path')
 const prompt = require('prompt')
-const slug = require('slug')
 
 const builds = require('../lib/builds')
 const config = require('../lib/config')()
+const slug = require('../lib/slug')
 
 module.exports = async () => {
   const setDefaults =
@@ -117,8 +117,8 @@ module.exports = async () => {
           console.log(chalk.red('× ERROR:', err))
         }
       } else {
-        const client = slug(result.c, {lower: true, replacement: '-'})
-        const alias = slug(result.a, {lower: true, replacement: '-'})
+        const client = slug(result.c)
+        const alias = slug(result.a)
         const currentConfig = config.get()
 
         let newConfig = {}
