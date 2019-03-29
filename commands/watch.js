@@ -2,6 +2,7 @@ const {exec} = require('child_process')
 const argv = require('minimist')(process.argv.slice(2))
 const chalk = require('chalk')
 const chokidar = require('chokidar')
+const fs = require('fs')
 const ipc = require('node-ipc')
 const ora = require('ora')
 const path = require('path')
@@ -16,6 +17,7 @@ module.exports = options => {
   let instance = argv['_'][2] || null
   let selected = null
   let errorMessage
+  let recentFiles = []
 
   const useLog = options.log
   const errorsOnly = options.errorsOnly
@@ -34,10 +36,18 @@ module.exports = options => {
   }
 
   if (selected) {
-    let spinner
+    const text = `${chalk.bold('WATCHING')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(
+      instance
+    )} [Ctrl-C to Cancel]\n`
+    const spinner = ora(text)
+    const output = fn => {
+      spinner.stop()
+      fn()
+      spinner.start()
+    }
 
     const watcher = chokidar.watch(selected.d, {
-      ignored: [/[/\\]\./, '**/node_modules/**'],
+      ignored: [/[/\\]\./, '**/node_modules/**', '**/bundle-analyzer.*'],
       ignoreInitial: true,
       persistent: true,
       awaitWriteFinish: true
@@ -59,32 +69,111 @@ module.exports = options => {
       })
     })
 
-    const buildCheck = file => {
-      if (Object.keys(selected.b).length > 0) {
-        const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
-        Object.keys(selected.b).map(build => {
-          const builder = selected.b[build]
-          if (
-            builder.enabled &&
-            new RegExp(builder.watch.join('|')).test(checkPath) &&
-            typeof builder.cmd.exec !== 'undefined' &&
-            builder.cmd.exec.length > 0
-          ) {
-            const cmd = builder.cmd.exec
-            const building = build.split('_')
-            console.log(
-              `\n${chalk.bgGreen.white.bold(' BUILDING ')} ${chalk.cyan.bold(
-                building[1]
-              )} for cartridge ${chalk.magenta.bold(building[0])} ...\n\n`
-            )
+    /**
+     * Add support for SFRA
+     * @param  {string} ext File Extension
+     * @param  {string} dir Directory
+     */
+    const compile = (ext, dir) => {
+      const jsCompile = `cd ${dir}; ./node_modules/.bin/sgmf-scripts --compile js`
+      const cssCompile = `cd ${dir}; ./node_modules/.bin/sgmf-scripts --compile css`
 
-            exec(cmd, (err, data, stderr) => {
-              if (err || stderr) {
-                console.log(chalk.red.bold(`✖ Build Error: ${err} {stderr}`))
-              }
-            })
+      if (ext === 'js') {
+        output(() =>
+          console.log(
+            `\n${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold(
+              'JavaScript'
+            )} ...\n`
+          )
+        )
+
+        exec(jsCompile, (err, data, stderr) => {
+          if (err || stderr) {
+            output(() => console.log(chalk.red.bold(`✖ Build Error: ${err} ${stderr}`)))
           }
         })
+      } else if (ext === 'css' || ext === 'scss') {
+        output(() =>
+          console.log(
+            `\n${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold('CSS')} ...\n`
+          )
+        )
+
+        exec(cssCompile, (err, data, stderr) => {
+          if (err || stderr) {
+            output(() => console.log(chalk.red.bold(`✖ SFRA Compile Error: ${err} ${stderr}`)))
+          }
+        })
+      }
+    }
+
+    const buildCheck = file => {
+      if (recentFiles.indexOf(file) === -1) {
+        recentFiles.push(file)
+
+        setTimeout(() => {
+          let idx = recentFiles.indexOf(file)
+          recentFiles.splice(idx, 1)
+        }, 10000)
+
+        if (Object.keys(selected.b).length > 0) {
+          const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
+          Object.keys(selected.b).map(build => {
+            const builder = selected.b[build]
+            if (
+              builder.enabled &&
+              new RegExp(builder.watch.join('|')).test(checkPath) &&
+              typeof builder.cmd.exec !== 'undefined' &&
+              builder.cmd.exec.length > 0
+            ) {
+              const cmd = builder.cmd.exec
+              const building = build.split('_')
+
+              output(() =>
+                console.log(
+                  `\n${chalk.bgGreen.white.bold(' BUILDING ')} ${chalk.cyan.bold(
+                    building[1]
+                  )} for cartridge ${chalk.magenta.bold(building[0])} ...\n\n`
+                )
+              )
+              exec(cmd, (err, data, stderr) => {
+                if (err || stderr) {
+                  output(() => console.log(chalk.red.bold(`✖ Build Error: ${err} ${stderr}`)))
+                }
+              })
+            }
+          })
+        } else {
+          const filePath = path.dirname(file)
+          const ext = file.split('.').pop()
+          const dirs = filePath.split('/')
+          const length = path.normalize(selected.d).split('/').length
+
+          // Ignore file changes that are likely results from builds
+          const ignoredPath = ['/css/', '/js/']
+
+          // Check current directory for WebPack
+          if (
+            fs.existsSync(path.join(filePath, 'webpack.config.js')) &&
+            !new RegExp(ignoredPath.join('|')).test(file)
+          ) {
+            compile(ext, filePath)
+          } else {
+            // Work our way backwards to look for WebPack until we get to project root
+            for (var i = dirs.length; i >= length; i--) {
+              dirs.pop()
+              let curPath = dirs.join('/')
+
+              if (
+                fs.existsSync(path.join(curPath, 'webpack.config.js')) &&
+                !new RegExp(ignoredPath.join('|')).test(file)
+              ) {
+                compile(ext, curPath)
+                break
+              }
+            }
+          }
+        }
       }
     }
 
@@ -107,7 +196,7 @@ module.exports = options => {
 
     // @TODO: Watch for Removing Files
     watcher.on('unlink', file => {
-      console.log(`${chalk.red('✗ REMOVING')} ${file.replace(selected.d, '.')}`)
+      output(() => console.log(`${chalk.red('✗ REMOVING')} ${file.replace(selected.d, '.')}`))
     })
 
     // Watch for Errors
@@ -135,7 +224,7 @@ module.exports = options => {
       if (useLog) {
         logger.log(errorMessage)
       } else {
-        console.log(chalk.red.bold(`\n${errorMessage}`))
+        output(() => console.log(chalk.red.bold(`\n${errorMessage}`)))
       }
     })
 
@@ -163,10 +252,6 @@ module.exports = options => {
 
       if (useLog) {
         logger.log(`Watching ${client} ${instance}`, true)
-      } else {
-        spinner = ora(
-          `${chalk.bold('WATCHING')} ${chalk.cyan.bold(client)} ${chalk.magenta.bold(instance)} [Ctrl-C to Cancel]\n`
-        ).start()
       }
     })
   } else if (client && instance) {

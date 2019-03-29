@@ -1,6 +1,6 @@
 {
   "name": "sfcc-cli",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Command Line Interface for Salesforce Commerce Cloud Sandbox Development",
   "homepage": "https://github.com/redvanworkshop/sfcc-cli#readme",
   "license": "MIT",
@@ -14,9 +14,20 @@
   "keywords": [
     "cli",
     "salesforce",
+    "sfcc",
     "commerce-cloud",
-    "denadware",
-    "sandbox"
+    "demandware",
+    "sandbox",
+    "sfra",
+    "watch",
+    "build",
+    "upload",
+    "log",
+    "remote",
+    "search",
+    "macos",
+    "windows",
+    "linux"
   ],
   "contributors": [
     {
@@ -33,8 +44,7 @@
     "url": "https://github.com/redvanworkshop/sfcc-cli/issues"
   },
   "scripts": {
-    "test": "eslint --ext .js ./ --fix && echo '\n【ツ】CODE PERFECTION !!!\n'",
-    "precommit": "lint-staged"
+    "test": "eslint --ext .js ./ --fix && echo '\n【ツ】CODE PERFECTION !!!\n'"
   },
   "lint-staged": {
     "*.js": [
