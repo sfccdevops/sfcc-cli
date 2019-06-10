@@ -29,6 +29,12 @@ If you don't want to get notified of every upload, but would rather only get not
 sfcc watch <client> <instance> --errors-only
 ```
 
+If you just want to trigger the compiler on file changes, and let your IDE handle uploads, you can pass `--compile-only`:
+
+```bash
+sfcc watch <client> <instance> --compile-only
+```
+
 If you would like to run the watcher as a background process, but capture the log output, you can pass `--log`, and a log will be created at `~/.sfcc-cli.log` ( log is truncated to last 500 lines each time you start a new `watch` ):
 
 ```bash

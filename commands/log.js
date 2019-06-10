@@ -36,7 +36,13 @@ module.exports = async options => {
         username: selected.u,
         password: selected.p
       }
+    }).catch(error => {
+      console.log(chalk.red.bold('\n✖') + ` ${error}\n`)
     })
+
+    if (!files) {
+      return
+    }
 
     files = files.filter(({displayname}) => displayname.includes('.log'))
 

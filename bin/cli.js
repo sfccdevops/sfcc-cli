@@ -57,6 +57,11 @@ const argv = yargs
       describe: 'Only Show Notification for Errors',
       type: 'boolean',
       default: false
+    },
+    'compile-only': {
+      describe: 'No Uploads, just Run Compilers',
+      type: 'boolean',
+      default: false
     }
   })
   .command('log [client] [instance]', 'Stream log files from an instance', {

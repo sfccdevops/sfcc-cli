@@ -15,9 +15,9 @@ Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Window
 
 - [X] Easily Manage Multiple Clients & Instances
 - [X] Watch for code changes and upload in background ( without being prompted for passwords )
+- [X] Support for SFRA JS & CSS Compilers
 - [X] Support for Eclipse Build Processes
 - [X] Log Viewing with Advanced Search & Filter Capabilities
-- [X] SFCC CLI integration via [Browser Extension](https://github.com/redvanworkshop/sfcc-remote)
 
 
 Developer Overview

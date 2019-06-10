@@ -17,10 +17,10 @@ module.exports = options => {
   let instance = argv['_'][2] || null
   let selected = null
   let errorMessage
-  let recentFiles = []
 
   const useLog = options.log
   const errorsOnly = options.errorsOnly
+  const compileOnly = options.compileOnly
 
   // Get Client & Instance, or check for Default
   if (client && instance) {
@@ -45,6 +45,10 @@ module.exports = options => {
       fn()
       spinner.start()
     }
+
+    // intentional empty
+    console.log('')
+    spinner.start()
 
     const watcher = chokidar.watch(selected.d, {
       ignored: [/[/\\]\./, '**/node_modules/**', '**/bundle-analyzer.*'],
@@ -81,96 +85,146 @@ module.exports = options => {
       if (ext === 'js') {
         output(() =>
           console.log(
-            `\n${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold(
+            `${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold(
               'JavaScript'
             )} ...\n`
           )
         )
 
+        if (!errorsOnly) {
+          notify({
+            title: `${client} ${instance}`,
+            icon: path.join(__dirname, '../icons/', 'sfcc-cli.png'),
+            subtitle: 'COMPILING JAVASCRIPT ...',
+            message: `${path.basename(dir)}`
+          })
+        }
+
         exec(jsCompile, (err, data, stderr) => {
           if (err || stderr) {
             output(() => console.log(chalk.red.bold(`✖ Build Error: ${err} ${stderr}`)))
+
+            notify({
+              title: `${client} ${instance}`,
+              icon: path.join(__dirname, '../icons/', 'sfcc-error.png'),
+              subtitle: 'COMPILING JAVASCRIPT FAILED',
+              message: `${err} ${stderr}`,
+              sound: true,
+              wait: true
+            })
+          } else {
+            output(() => console.log(`${chalk.green.bold('COMPLETE')}\n`))
+            output(() => console.log(data))
+            output(() => console.log('\n'))
+
+            if (!errorsOnly) {
+              notify({
+                title: `${client} ${instance}`,
+                icon: path.join(__dirname, '../icons/', 'sfcc-success.png'),
+                subtitle: 'COMPILE COMPLETE',
+                message: `${path.basename(dir)}`
+              })
+            }
           }
         })
       } else if (ext === 'css' || ext === 'scss') {
         output(() =>
           console.log(
-            `\n${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold('CSS')} ...\n`
+            `${chalk.bgGreen.white.bold(' SFRA ')} ${chalk.cyan.bold('Compiling')} ${chalk.magenta.bold('CSS')} ...\n`
           )
         )
+
+        if (!errorsOnly) {
+          notify({
+            title: `${client} ${instance}`,
+            icon: path.join(__dirname, '../icons/', 'sfcc-cli.png'),
+            subtitle: 'COMPILING CSS ...',
+            message: `${path.basename(dir)}`
+          })
+        }
 
         exec(cssCompile, (err, data, stderr) => {
           if (err || stderr) {
             output(() => console.log(chalk.red.bold(`✖ SFRA Compile Error: ${err} ${stderr}`)))
+
+            notify({
+              title: `${client} ${instance}`,
+              icon: path.join(__dirname, '../icons/', 'sfcc-error.png'),
+              subtitle: 'COMPILING CSS FAILED',
+              message: `${err} ${stderr}`,
+              sound: true,
+              wait: true
+            })
+          } else {
+            output(() => console.log(`${chalk.green.bold('COMPLETE')}\n`))
+            output(() => console.log(data))
+            output(() => console.log('\n'))
+
+            if (!errorsOnly) {
+              notify({
+                title: `${client} ${instance}`,
+                icon: path.join(__dirname, '../icons/', 'sfcc-success.png'),
+                subtitle: 'COMPILE COMPLETE',
+                message: `${path.basename(dir)}`
+              })
+            }
           }
         })
       }
     }
 
     const buildCheck = file => {
-      if (recentFiles.indexOf(file) === -1) {
-        recentFiles.push(file)
-
-        setTimeout(() => {
-          let idx = recentFiles.indexOf(file)
-          recentFiles.splice(idx, 1)
-        }, 10000)
-
-        if (Object.keys(selected.b).length > 0) {
-          const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
-          Object.keys(selected.b).map(build => {
-            const builder = selected.b[build]
-            if (
-              builder.enabled &&
-              new RegExp(builder.watch.join('|')).test(checkPath) &&
-              typeof builder.cmd.exec !== 'undefined' &&
-              builder.cmd.exec.length > 0
-            ) {
-              const cmd = builder.cmd.exec
-              const building = build.split('_')
-
-              output(() =>
-                console.log(
-                  `\n${chalk.bgGreen.white.bold(' BUILDING ')} ${chalk.cyan.bold(
-                    building[1]
-                  )} for cartridge ${chalk.magenta.bold(building[0])} ...\n\n`
-                )
-              )
-              exec(cmd, (err, data, stderr) => {
-                if (err || stderr) {
-                  output(() => console.log(chalk.red.bold(`✖ Build Error: ${err} ${stderr}`)))
-                }
-              })
-            }
-          })
-        } else {
-          const filePath = path.dirname(file)
-          const ext = file.split('.').pop()
-          const dirs = filePath.split('/')
-          const length = path.normalize(selected.d).split('/').length
-
-          // Ignore file changes that are likely results from builds
-          const ignoredPath = ['/css/', '/js/']
-
-          // Check current directory for WebPack
+      if (Object.keys(selected.b).length > 0) {
+        const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
+        Object.keys(selected.b).map(build => {
+          const builder = selected.b[build]
           if (
-            fs.existsSync(path.join(filePath, 'webpack.config.js')) &&
-            !new RegExp(ignoredPath.join('|')).test(file)
+            builder.enabled &&
+            new RegExp(builder.watch.join('|')).test(checkPath) &&
+            typeof builder.cmd.exec !== 'undefined' &&
+            builder.cmd.exec.length > 0
           ) {
-            compile(ext, filePath)
-          } else {
-            // Work our way backwards to look for WebPack until we get to project root
-            for (var i = dirs.length; i >= length; i--) {
-              dirs.pop()
-              let curPath = dirs.join('/')
+            const cmd = builder.cmd.exec
+            const building = build.split('_')
 
-              if (
-                fs.existsSync(path.join(curPath, 'webpack.config.js')) &&
-                !new RegExp(ignoredPath.join('|')).test(file)
-              ) {
-                compile(ext, curPath)
-                break
+            output(() =>
+              console.log(
+                `\n${chalk.bgGreen.white.bold(' BUILDING ')} ${chalk.cyan.bold(
+                  building[1]
+                )} for cartridge ${chalk.magenta.bold(building[0])} ...\n\n`
+              )
+            )
+            exec(cmd, (err, data, stderr) => {
+              if (err || stderr) {
+                output(() => console.log(chalk.red.bold(`✖ Build Error: ${err} ${stderr}`)))
               }
+            })
+          }
+        })
+      } else {
+        const filePath = path.dirname(file)
+        const ext = file.split('.').pop()
+        const dirs = filePath.split('/')
+        const length = path.normalize(selected.d).split('/').length
+
+        // Ignore file changes that are likely results from builds
+        const ignoredPath = ['/css/', '/static/']
+
+        // Check current directory for WebPack
+        if (fs.existsSync(path.join(filePath, 'webpack.config.js')) && !new RegExp(ignoredPath.join('|')).test(file)) {
+          compile(ext, filePath)
+        } else {
+          // Work our way backwards to look for WebPack until we get to project root
+          for (var i = dirs.length; i >= length; i--) {
+            dirs.pop()
+            let curPath = dirs.join('/')
+
+            if (
+              fs.existsSync(path.join(curPath, 'webpack.config.js')) &&
+              !new RegExp(ignoredPath.join('|')).test(file)
+            ) {
+              compile(ext, curPath)
+              break
             }
           }
         }
@@ -185,18 +239,26 @@ module.exports = options => {
 
     // Watch for File Changes
     watcher.on('change', file => {
-      upload({file, spinner, selected, client, instance, options, callback})
+      if (!compileOnly) {
+        upload({file, spinner, selected, client, instance, options, callback})
+      }
+
       buildCheck(file)
     })
 
     watcher.on('add', file => {
-      upload({file, spinner, selected, client, instance, options, callback})
+      if (!compileOnly) {
+        upload({file, spinner, selected, client, instance, options, callback})
+      }
+
       buildCheck(file)
     })
 
     // @TODO: Watch for Removing Files
     watcher.on('unlink', file => {
-      output(() => console.log(`${chalk.red('✗ REMOVING')} ${file.replace(selected.d, '.')}`))
+      if (!compileOnly) {
+        output(() => console.log(`${chalk.red('✖ REMOVING')} ${file.replace(selected.d, '.')}`))
+      }
     })
 
     // Watch for Errors
