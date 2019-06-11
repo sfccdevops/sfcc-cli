@@ -70,7 +70,7 @@ module.exports = async () => {
       {
         description: chalk.cyan('Code Version:'),
         name: 'v',
-        pattern: /^[a-z0-9]+$/,
+        pattern: /^[a-zA-Z0-9]+$/,
         message: 'Code Version. ( e.g. develop, sitegenesis, etc )',
         required: true,
         default: 'develop'
@@ -78,7 +78,7 @@ module.exports = async () => {
       {
         description: chalk.cyan('Instance Alias:'),
         name: 'a',
-        pattern: /^[a-z0-9]+$/,
+        pattern: /^[a-zA-Z0-9]+$/,
         message: 'Invalid Instance Alias. ( e.g. dev04, sandbox, staging, etc )',
         required: true,
         default: 'sandbox'
