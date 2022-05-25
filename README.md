@@ -1,4 +1,4 @@
-![Logo](docs/img/logo.png "Logo")
+![Logo](https://sfccdevops.s3.amazonaws.com/logo-128.png "Logo")
 
 SFCC CLI
 ---
@@ -57,10 +57,15 @@ sfcc setup
 
 ```bash
 cd ~
-git clone https://github.com/redvanworkshop/sfcc-cli.git
+git clone https://github.com/sfccdevops/sfcc-cli.git
 cd sfcc-cli
 npm install -g --no-optional
 sfcc setup
 ```
 
-_Inspired by [dw-cli](https://github.com/mzwallace/dw-cli). Custom Built for RVW Employees._
+_Inspired by [dw-cli](https://github.com/mzwallace/dw-cli). Custom Built for SFCC Developers._
+
+Disclaimer
+---
+
+> The trademarks and product names of Salesforce®, including the mark Salesforce®, are the property of Salesforce.com. SFCC DevOps is not affiliated with Salesforce.com, nor does Salesforce.com sponsor or endorse the SFCC DevOps products or website. The use of the Salesforce® trademark on this project does not indicate an endorsement, recommendation, or business relationship between Salesforce.com and SFCC DevOps.

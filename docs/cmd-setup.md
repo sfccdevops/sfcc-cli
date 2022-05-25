@@ -1,4 +1,4 @@
-![Logo](img/logo.png "Logo")
+![Logo](https://sfccdevops.s3.amazonaws.com/logo-128.png "Logo")
 
 **[↤ Developer Overview](../README.md#developer-overview)**
 
@@ -26,7 +26,7 @@ otherwise:
 #### Pass Params via CLI
 
 ```bash
-sfcc setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d /Users/RVW/Projects/mysandbox -u my@email.com -p 'my^pass'
+sfcc setup -c "My Client" -h dev04-web-mysandbox.demandware.net -d /Users/Name/Projects/mysandbox -u my@email.com -p 'my^pass'
 ```
 
 NOTE: When using the password flag, make sure to wrap the text with SINGLE QUOTES.  Using Double Quotes will cause issues with passwords that contain dollar signs.
@@ -50,7 +50,7 @@ Code Version   | `-v`  | No       | `develop` | SFCC Code Version to use
   "my-client": {
     "sandbox": {
       "h": "dev04-web-mysandbox.demandware.net",
-      "d": "/Users/RVW/Projects/mysandbox",
+      "d": "/Users/Name/Projects/mysandbox",
       "u": "my@email.com",
       "p": "my^pass",
       "a": "sandbox",
@@ -67,7 +67,7 @@ If you have Eclipse Build scripts in your cartridges ( `*.launch` files containe
   "my-client": {
     "sandbox": {
       "h": "dev04-web-mysandbox.demandware.net",
-      "d": "/Users/RVW/Projects/mysandbox",
+      "d": "/Users/Name/Projects/mysandbox",
       "u": "my@email.com",
       "p": "my^pass",
       "a": "sandbox",

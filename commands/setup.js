@@ -87,7 +87,7 @@ module.exports = async () => {
         description: chalk.cyan('Directory:'),
         name: 'd',
         required: true,
-        message: 'Directory does not exist. ( e.g. /Users/RVW/Projects/mysandbox )',
+        message: 'Directory does not exist. ( e.g. /Users/Name/Projects/mysandbox )',
         conform: function(directory) {
           directory = path.normalize(path.resolve(directory.replace(/^\/[a-z]\//, '/')))
           return fs.existsSync(directory)

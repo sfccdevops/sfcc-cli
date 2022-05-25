@@ -1,4 +1,4 @@
-![Logo](img/logo.png "Logo")
+![Logo](https://sfccdevops.s3.amazonaws.com/logo-128.png "Logo")
 
 **[↤ Developer Overview](../README.md#developer-overview)**
 

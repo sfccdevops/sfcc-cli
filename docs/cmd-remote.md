@@ -1,4 +1,4 @@
-![Logo](img/logo.png "Logo")
+![Logo](https://sfccdevops.s3.amazonaws.com/logo-128.png "Logo")
 
 **[↤ Developer Overview](../README.md#developer-overview)**
 
@@ -13,7 +13,7 @@
 Browser Extension Setup
 ---
 
-To get started, you'll need to [Install the Browser Extension](https://github.com/redvanworkshop/sfcc-remote).
+To get started, you'll need to [Install the Browser Extension](https://github.com/sfccdevops/sfcc-remote).
 
 Once you have the browser extension installed, you will need to do the following:
 
