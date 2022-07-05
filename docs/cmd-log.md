@@ -7,7 +7,7 @@
 
 > Stream/Search log files from an instance
 
-![demo](https://sfcc-cli.s3.amazonaws.com/log.gif?v=1.1.0)
+![demo](https://sfcc-cli.s3.amazonaws.com/log.gif?v=1.3.0)
 
 If you only have a single project, you can run:
 

@@ -3,7 +3,6 @@ const argv = require('minimist')(process.argv.slice(2))
 const chalk = require('chalk')
 const chokidar = require('chokidar')
 const fs = require('fs')
-const ipc = require('node-ipc')
 const ora = require('ora')
 const path = require('path')
 
@@ -12,7 +11,7 @@ const logger = require('../lib/logger')()
 const notify = require('../lib/notify')()
 const upload = require('../lib/upload')
 
-module.exports = options => {
+module.exports = (options) => {
   let client = argv['_'][1] || null
   let instance = argv['_'][2] || null
   let selected = null
@@ -40,7 +39,7 @@ module.exports = options => {
       instance
     )} [Ctrl-C to Cancel]\n`
     const spinner = ora(text)
-    const output = fn => {
+    const output = (fn) => {
       spinner.stop()
       fn()
       spinner.start()
@@ -54,23 +53,7 @@ module.exports = options => {
       ignored: [/[/\\]\./, '**/node_modules/**', '**/bundle-analyzer.*'],
       ignoreInitial: true,
       persistent: true,
-      awaitWriteFinish: true
-    })
-
-    // Connect to Remote Message Bus
-    let remote = null
-
-    ipc.config.id = 'upload'
-    ipc.config.retry = 1500
-    ipc.config.silent = true
-
-    ipc.connectTo('remote', () => {
-      ipc.of.remote.on('connect', () => {
-        remote = ipc.of.remote
-      })
-      ipc.of.remote.on('disconnect', () => {
-        remote = null
-      })
+      awaitWriteFinish: true,
     })
 
     /**
@@ -81,6 +64,11 @@ module.exports = options => {
     const compile = (ext, dir) => {
       const jsCompile = `cd ${dir}; ./node_modules/.bin/sgmf-scripts --compile js`
       const cssCompile = `cd ${dir}; ./node_modules/.bin/sgmf-scripts --compile css`
+
+      // Don't Compile if Native Compiler Missing
+      if (!fs.existsSync(path.join(dir, 'node_modules', '.bin', 'sgmf-scripts'))) {
+        return
+      }
 
       if (ext === 'js') {
         output(() =>
@@ -96,7 +84,7 @@ module.exports = options => {
             title: `${client} ${instance}`,
             icon: path.join(__dirname, '../icons/', 'sfcc-cli.png'),
             subtitle: 'COMPILING JAVASCRIPT ...',
-            message: `${path.basename(dir)}`
+            message: `${path.basename(dir)}`,
           })
         }
 
@@ -110,7 +98,7 @@ module.exports = options => {
               subtitle: 'COMPILING JAVASCRIPT FAILED',
               message: `${err} ${stderr}`,
               sound: true,
-              wait: true
+              wait: true,
             })
           } else {
             output(() => console.log(`${chalk.green.bold('COMPLETE')}\n`))
@@ -122,7 +110,7 @@ module.exports = options => {
                 title: `${client} ${instance}`,
                 icon: path.join(__dirname, '../icons/', 'sfcc-success.png'),
                 subtitle: 'COMPILE COMPLETE',
-                message: `${path.basename(dir)}`
+                message: `${path.basename(dir)}`,
               })
             }
           }
@@ -139,7 +127,7 @@ module.exports = options => {
             title: `${client} ${instance}`,
             icon: path.join(__dirname, '../icons/', 'sfcc-cli.png'),
             subtitle: 'COMPILING CSS ...',
-            message: `${path.basename(dir)}`
+            message: `${path.basename(dir)}`,
           })
         }
 
@@ -153,7 +141,7 @@ module.exports = options => {
               subtitle: 'COMPILING CSS FAILED',
               message: `${err} ${stderr}`,
               sound: true,
-              wait: true
+              wait: true,
             })
           } else {
             output(() => console.log(`${chalk.green.bold('COMPLETE')}\n`))
@@ -165,7 +153,7 @@ module.exports = options => {
                 title: `${client} ${instance}`,
                 icon: path.join(__dirname, '../icons/', 'sfcc-success.png'),
                 subtitle: 'COMPILE COMPLETE',
-                message: `${path.basename(dir)}`
+                message: `${path.basename(dir)}`,
               })
             }
           }
@@ -173,10 +161,10 @@ module.exports = options => {
       }
     }
 
-    const buildCheck = file => {
+    const buildCheck = (file) => {
       if (Object.keys(selected.b).length > 0) {
         const checkPath = path.dirname(file).replace(path.normalize(selected.d), '')
-        Object.keys(selected.b).map(build => {
+        Object.keys(selected.b).map((build) => {
           const builder = selected.b[build]
           if (
             builder.enabled &&
@@ -231,14 +219,11 @@ module.exports = options => {
       }
     }
 
-    const callback = data => {
-      if (remote && typeof remote.emit !== 'undefined') {
-        remote.emit('watch', data)
-      }
-    }
+    // Custom Callback ( not currently in use, might extend this in the future )
+    const callback = () => {}
 
     // Watch for File Changes
-    watcher.on('change', file => {
+    watcher.on('change', (file) => {
       if (!compileOnly) {
         upload({file, spinner, selected, client, instance, options, callback})
       }
@@ -246,7 +231,7 @@ module.exports = options => {
       buildCheck(file)
     })
 
-    watcher.on('add', file => {
+    watcher.on('add', (file) => {
       if (!compileOnly) {
         upload({file, spinner, selected, client, instance, options, callback})
       }
@@ -255,32 +240,22 @@ module.exports = options => {
     })
 
     // @TODO: Watch for Removing Files
-    watcher.on('unlink', file => {
+    watcher.on('unlink', (file) => {
       if (!compileOnly) {
         output(() => console.log(`${chalk.red('✖ REMOVING')} ${file.replace(selected.d, '.')}`))
       }
     })
 
     // Watch for Errors
-    watcher.on('error', error => {
+    watcher.on('error', (error) => {
       notify({
         title: `${client} ${instance}`,
         icon: path.join(__dirname, '../icons/', 'sfcc-error.png'),
         subtitle: 'WATCH FAILED',
         message: error,
         sound: true,
-        wait: true
+        wait: true,
       })
-
-      if (remote && typeof remote.emit !== 'undefined') {
-        remote.emit('watch', {
-          type: 'error',
-          client: client,
-          instance: instance,
-          message: error,
-          timestamp: new Date().toString()
-        })
-      }
 
       errorMessage = `✖ Watch Error for '${client}' '${instance}': ${error}.`
       if (useLog) {
@@ -296,21 +271,9 @@ module.exports = options => {
           title: `${client} ${instance}`,
           icon: path.join(__dirname, '../icons/', 'sfcc-cli.png'),
           subtitle: 'STARTING WATCHER',
-          message: 'Waiting for Changes ...'
+          message: 'Waiting for Changes ...',
         })
       }
-
-      setTimeout(() => {
-        if (remote && typeof remote.emit !== 'undefined') {
-          remote.emit('watch', {
-            type: 'watch',
-            client: client,
-            instance: instance,
-            message: 'Starting Watcher',
-            timestamp: new Date().toString()
-          })
-        }
-      }, 100)
 
       if (useLog) {
         logger.log(`Watching ${client} ${instance}`, true)

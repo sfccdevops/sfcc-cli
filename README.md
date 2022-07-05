@@ -5,7 +5,7 @@ SFCC CLI
 
 > Command Line Interface for Salesforce Commerce Cloud Sandbox Development
 
-![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif?v=1.1.0)
+![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif?v=1.3.0)
 
 
 Introduction
@@ -30,12 +30,10 @@ Developer Overview
 * [`sfcc delete`](docs/cmd-delete.md) - Delete Config for Client
 * [`sfcc watch`](docs/cmd-watch.md) - Watch for Changes and Push Updates
 * [`sfcc log`](docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
-* [`sfcc remote`](docs/cmd-remote.md) - Remote Control for your Sandbox Storefront
 * [`sfcc help`](docs/cmd-help.md) - Get Help when you need it
 
 #### Additional Information
 
-* [IDE Setup](docs/ide-setup.md)
 * [Troubleshooting](docs/troubleshooting.md)
 
 
@@ -44,12 +42,12 @@ Install
 
 #### Requirements
 
-- [X] [Node v10+](https://nodejs.org/en/download/)
+- [X] [Node v11+](https://nodejs.org/en/download/)
 
 #### Install via NPM
 
 ```bash
-npm install -g sfcc-cli --no-optional
+npm install -g @sfccdevops/sfcc-cli --no-optional
 sfcc setup
 ```
 

@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
 npm-debug.log
-remote/ssl/sfcc-cli-localhost.*
 .vscode
+!sfcc-cli.code-workspace

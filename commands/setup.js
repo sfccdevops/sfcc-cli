@@ -40,7 +40,7 @@ module.exports = async () => {
         description: chalk.cyan('Client Name:'),
         name: 'c',
         pattern: /^[a-zA-Z-_ ]+$/,
-        required: true
+        required: true,
       },
       {
         description: chalk.cyan('Hostname:'),
@@ -48,7 +48,7 @@ module.exports = async () => {
         pattern: /^[a-z0-9_.-]+$/,
         message: 'Invalid Host Name. ( e.g. dev04-web-mysandbox.demandware.net )',
         required: true,
-        conform: function(hostname) {
+        conform: function (hostname) {
           if (typeof hostname !== 'string') return false
 
           var parts = hostname.split('.')
@@ -59,13 +59,13 @@ module.exports = async () => {
 
           if (!tldRegex.test(tld)) return false
 
-          var isValid = parts.every(function(host) {
+          var isValid = parts.every(function (host) {
             var hostRegex = /^(?!:\/\/)([a-zA-Z0-9]+|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])$/gi
             return hostRegex.test(host)
           })
 
           return isValid
-        }
+        },
       },
       {
         description: chalk.cyan('Code Version:'),
@@ -73,7 +73,7 @@ module.exports = async () => {
         pattern: /^[a-zA-Z0-9]+$/,
         message: 'Code Version. ( e.g. develop, sitegenesis, etc )',
         required: true,
-        default: 'develop'
+        default: 'develop',
       },
       {
         description: chalk.cyan('Instance Alias:'),
@@ -81,34 +81,34 @@ module.exports = async () => {
         pattern: /^[a-zA-Z0-9]+$/,
         message: 'Invalid Instance Alias. ( e.g. dev04, sandbox, staging, etc )',
         required: true,
-        default: 'sandbox'
+        default: 'sandbox',
       },
       {
         description: chalk.cyan('Directory:'),
         name: 'd',
         required: true,
         message: 'Directory does not exist. ( e.g. /Users/Name/Projects/mysandbox )',
-        conform: function(directory) {
+        conform: function (directory) {
           directory = path.normalize(path.resolve(directory.replace(/^\/[a-z]\//, '/')))
           return fs.existsSync(directory)
-        }
+        },
       },
       {
         description: chalk.cyan('Username:'),
         name: 'u',
         pattern: /^[a-zA-Z0-9_@.-]+$/,
         message: 'Invalid Username. ( e.g. myusername, my@email.com, etc )',
-        required: true
+        required: true,
       },
       {
         description: chalk.cyan('Password:'),
         name: 'p',
         required: true,
         hidden: true,
-        replace: '*'
-      }
+        replace: '*',
+      },
     ],
-    function(err, result) {
+    function (err, result) {
       if (err) {
         if (err.message === 'canceled') {
           console.log(chalk.red('× Setup Cancelled'))
@@ -148,7 +148,7 @@ module.exports = async () => {
           d: directory,
           u: result.u,
           p: result.p,
-          b: builders
+          b: builders,
         }
 
         // Write Config File

@@ -1,15 +1,19 @@
 {
-  "name": "sfcc-cli",
-  "version": "1.2.1",
+  "name": "@sfccdevops/sfcc-cli",
+  "version": "1.3.0",
   "description": "Command Line Interface for Salesforce Commerce Cloud Sandbox Development",
   "homepage": "https://github.com/sfccdevops/sfcc-cli#readme",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "main": "./bin/cli.js",
   "bin": {
     "sfcc": "./bin/cli.js"
   },
   "engines": {
-    "node": ">=11.6.0"
+    "node": ">=14.17.3",
+    "npm": ">= 6.14.13"
   },
   "keywords": [
     "cli",
@@ -23,7 +27,6 @@
     "build",
     "upload",
     "log",
-    "remote",
     "search",
     "macos",
     "windows",
@@ -33,7 +36,7 @@
     {
       "name": "Peter Schmalfeldt",
       "email": "me@peterschmalfeldt.com",
-      "url": "peterschmalfeldt.com"
+      "url": "https://peterschmalfeldt.com"
     }
   ],
   "repository": {
@@ -54,37 +57,35 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^2.4.0",
-    "lint-staged": "^8.2.0",
-    "minimist": "^1.2.0",
-    "prettier": "^1.18.2"
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "minimist": "^1.2.6",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "bluebird": "^3.5.5",
-    "chalk": "^2.4.2",
-    "chokidar": "^3.0.1",
-    "debug": "^4.1.1",
-    "express": "^4.17.1",
-    "follow-redirects": "^1.7.0",
-    "fs-extra": "^8.0.1",
+    "axios": "^0.27.2",
+    "bluebird": "^3.7.2",
+    "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
+    "debug": "^4.3.4",
+    "express": "^4.18.1",
+    "follow-redirects": "^1.15.1",
+    "fs-extra": "^10.1.0",
     "https": "^1.0.0",
-    "lodash": "^4.17.11",
-    "node-ipc": "^9.1.1",
-    "node-notifier": "^5.4.0",
-    "ora": "^3.4.0",
-    "os": "^0.1.1",
-    "p-retry": "^4.1.0",
-    "prompt": "^1.0.0",
+    "lodash": "^4.17.21",
+    "node-notifier": "^10.0.1",
+    "ora": "^5.4.1",
+    "os": "^0.1.2",
+    "p-retry": "^4.6.2",
+    "prompt": "^1.3.0",
     "prompt-confirm": "^2.0.4",
-    "socket.io": "^2.2.0",
     "truncate-logs": "^1.0.4",
     "xml-js": "^1.6.11",
-    "xml2js": "^0.4.19",
-    "yargs": "^13.2.4"
+    "xml2js": "^0.4.23",
+    "yargs": "^17.5.1"
   }
 }
