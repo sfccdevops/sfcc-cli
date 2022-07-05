@@ -7,7 +7,7 @@
 
 > List Configured SFCC Clients
 
-![demo](https://sfcc-cli.s3.amazonaws.com/list.gif?v=1.1.0)
+![demo](https://sfcc-cli.s3.amazonaws.com/list.gif?v=1.3.0)
 
 To get a list of your current clients & instances, you can run:
 

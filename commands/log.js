@@ -11,7 +11,7 @@ const find = require('../lib/find')
 const search = require('../lib/search')
 const tail = require('../lib/tail')
 
-module.exports = async options => {
+module.exports = async (options) => {
   let client = argv['_'][1] || null
   let instance = argv['_'][2] || null
   let selected = null
@@ -34,9 +34,9 @@ module.exports = async options => {
       baseURL: `https://${selected.h}/on/demandware.servlet/webdav/Sites/`,
       auth: {
         username: selected.u,
-        password: selected.p
-      }
-    }).catch(error => {
+        password: selected.p,
+      },
+    }).catch((error) => {
       console.log(chalk.red.bold('\n✖') + ` ${error}\n`)
     })
 
@@ -57,7 +57,7 @@ module.exports = async options => {
       groups = pickBy(
         groups,
         (group, name) =>
-          options.include.filter(level => {
+          options.include.filter((level) => {
             return new RegExp(level).test(name)
           }).length > 0
       )
@@ -71,7 +71,7 @@ module.exports = async options => {
       groups = pickBy(
         groups,
         (group, name) =>
-          options.exclude.filter(level => {
+          options.exclude.filter((level) => {
             return new RegExp(level).test(name)
           }).length === 0
       )
@@ -81,7 +81,7 @@ module.exports = async options => {
     if (options.list) {
       console.log(chalk.green.bold('\nLog Types:\n'))
 
-      forEach(keys(groups).sort(), group => {
+      forEach(keys(groups).sort(), (group) => {
         console.log('· ' + group)
       })
 
@@ -98,7 +98,7 @@ module.exports = async options => {
 
     // sort groups by last modified
     forEach(groups, (files, name) => {
-      var sorted = sortBy(files, file => new Date(file.getlastmodified)).reverse()
+      var sorted = sortBy(files, (file) => new Date(file.getlastmodified)).reverse()
       groups[name] = options.latest ? [sorted[0]] : sorted
     })
 

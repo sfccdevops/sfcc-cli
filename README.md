@@ -5,8 +5,7 @@ SFCC CLI
 
 > Command Line Interface for Salesforce Commerce Cloud Sandbox Development
 
-![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif?v=1.1.0)
-
+![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif?v=1.3.0)
 
 Introduction
 ---
@@ -19,7 +18,6 @@ Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Window
 - [X] Support for Eclipse Build Processes
 - [X] Log Viewing with Advanced Search & Filter Capabilities
 
-
 Developer Overview
 ---
 
@@ -30,26 +28,23 @@ Developer Overview
 * [`sfcc delete`](docs/cmd-delete.md) - Delete Config for Client
 * [`sfcc watch`](docs/cmd-watch.md) - Watch for Changes and Push Updates
 * [`sfcc log`](docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
-* [`sfcc remote`](docs/cmd-remote.md) - Remote Control for your Sandbox Storefront
 * [`sfcc help`](docs/cmd-help.md) - Get Help when you need it
 
 #### Additional Information
 
-* [IDE Setup](docs/ide-setup.md)
 * [Troubleshooting](docs/troubleshooting.md)
-
 
 Install
 ---
 
 #### Requirements
 
-- [X] [Node v10+](https://nodejs.org/en/download/)
+- [X] [Node v14+](https://nodejs.org/en/download/)
 
 #### Install via NPM
 
 ```bash
-npm install -g sfcc-cli --no-optional
+npm install -g @sfccdevops/sfcc-cli --no-optional
 sfcc setup
 ```
 
@@ -64,6 +59,11 @@ sfcc setup
 ```
 
 _Inspired by [dw-cli](https://github.com/mzwallace/dw-cli). Custom Built for SFCC Developers._
+
+About the Author
+---
+
+> [Peter Schmalfeldt](https://peterschmalfeldt.com/) is a Certified Senior Salesforce Commerce Cloud Developer with over 20 years of experience building eCommerce websites, providing everything you need to design, develop & deploy eCommerce applications for Web, Mobile & Desktop platforms.
 
 Disclaimer
 ---
