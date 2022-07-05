@@ -7,7 +7,6 @@ SFCC CLI
 
 ![demo](https://sfcc-cli.s3.amazonaws.com/demo.gif?v=1.3.0)
 
-
 Introduction
 ---
 
@@ -18,7 +17,6 @@ Make developing for Salesforce Commerce Cloud work with any IDE on MacOS, Window
 - [X] Support for SFRA JS & CSS Compilers
 - [X] Support for Eclipse Build Processes
 - [X] Log Viewing with Advanced Search & Filter Capabilities
-
 
 Developer Overview
 ---
@@ -36,13 +34,12 @@ Developer Overview
 
 * [Troubleshooting](docs/troubleshooting.md)
 
-
 Install
 ---
 
 #### Requirements
 
-- [X] [Node v11+](https://nodejs.org/en/download/)
+- [X] [Node v14+](https://nodejs.org/en/download/)
 
 #### Install via NPM
 
@@ -62,6 +59,11 @@ sfcc setup
 ```
 
 _Inspired by [dw-cli](https://github.com/mzwallace/dw-cli). Custom Built for SFCC Developers._
+
+About the Author
+---
+
+> [Peter Schmalfeldt](https://peterschmalfeldt.com/) is a Certified Senior Salesforce Commerce Cloud Developer with over 20 years of experience building eCommerce websites, providing everything you need to design, develop & deploy eCommerce applications for Web, Mobile & Desktop platforms.
 
 Disclaimer
 ---
