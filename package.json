@@ -1,6 +1,6 @@
 {
   "name": "@sfccdevops/sfcc-cli",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Command Line Interface for Salesforce Commerce Cloud Sandbox Development",
   "homepage": "https://github.com/sfccdevops/sfcc-cli#readme",
   "license": "MIT",

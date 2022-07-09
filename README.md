@@ -23,16 +23,16 @@ Developer Overview
 
 #### Commands
 
-* [`sfcc setup`](docs/cmd-setup.md) - Setup SFCC Development
-* [`sfcc list`](docs/cmd-list.md) - List Configured SFCC Clients
-* [`sfcc delete`](docs/cmd-delete.md) - Delete Config for Client
-* [`sfcc watch`](docs/cmd-watch.md) - Watch for Changes and Push Updates
-* [`sfcc log`](docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
-* [`sfcc help`](docs/cmd-help.md) - Get Help when you need it
+* [`sfcc setup`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-setup.md) - Setup SFCC Development
+* [`sfcc list`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-list.md) - List Configured SFCC Clients
+* [`sfcc delete`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-delete.md) - Delete Config for Client
+* [`sfcc watch`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-watch.md) - Watch for Changes and Push Updates
+* [`sfcc log`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-log.md) - View Logs with Advanced Search & Filter Capabilities
+* [`sfcc help`](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/cmd-help.md) - Get Help when you need it
 
 #### Additional Information
 
-* [Troubleshooting](docs/troubleshooting.md)
+* [Troubleshooting](https://github.com/sfccdevops/sfcc-cli/blob/master/docs/troubleshooting.md)
 
 Install
 ---
